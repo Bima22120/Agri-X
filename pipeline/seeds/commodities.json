@@ -1,0 +1,198 @@
+[
+  {
+    "commodity_id": "rice_premium",
+    "canonical_name_id": "Beras Premium",
+    "category": "rice",
+    "is_priority": 1,
+    "canonical_unit": "kg"
+  },
+  {
+    "commodity_id": "rice_medium_1",
+    "canonical_name_id": "Beras Medium I",
+    "category": "rice",
+    "is_priority": 1,
+    "canonical_unit": "kg"
+  },
+  {
+    "commodity_id": "rice_medium_2",
+    "canonical_name_id": "Beras Medium II",
+    "category": "rice",
+    "is_priority": 1,
+    "canonical_unit": "kg"
+  },
+  {
+    "commodity_id": "rice_super_1",
+    "canonical_name_id": "Beras Kualitas Super I",
+    "category": "rice",
+    "is_priority": 1,
+    "canonical_unit": "kg"
+  },
+  {
+    "commodity_id": "rice_super_2",
+    "canonical_name_id": "Beras Kualitas Super II",
+    "category": "rice",
+    "is_priority": 1,
+    "canonical_unit": "kg"
+  },
+  {
+    "commodity_id": "rice_low_1",
+    "canonical_name_id": "Beras Kualitas Bawah I",
+    "category": "rice",
+    "is_priority": 1,
+    "canonical_unit": "kg"
+  },
+  {
+    "commodity_id": "rice_low_2",
+    "canonical_name_id": "Beras Kualitas Bawah II",
+    "category": "rice",
+    "is_priority": 1,
+    "canonical_unit": "kg"
+  },
+  {
+    "commodity_id": "shallot_medium",
+    "canonical_name_id": "Bawang Merah",
+    "category": "vegetables",
+    "is_priority": 1,
+    "canonical_unit": "kg"
+  },
+  {
+    "commodity_id": "garlic_honan",
+    "canonical_name_id": "Bawang Putih",
+    "category": "vegetables",
+    "is_priority": 1,
+    "canonical_unit": "kg"
+  },
+  {
+    "commodity_id": "chili_red_curly",
+    "canonical_name_id": "Cabai Merah Keriting",
+    "category": "vegetables",
+    "is_priority": 1,
+    "canonical_unit": "kg"
+  },
+  {
+    "commodity_id": "chili_red_large",
+    "canonical_name_id": "Cabai Merah Besar",
+    "category": "vegetables",
+    "is_priority": 1,
+    "canonical_unit": "kg"
+  },
+  {
+    "commodity_id": "chili_birdseye_red",
+    "canonical_name_id": "Cabai Rawit Merah",
+    "category": "vegetables",
+    "is_priority": 1,
+    "canonical_unit": "kg"
+  },
+  {
+    "commodity_id": "chili_birdseye_green",
+    "canonical_name_id": "Cabai Rawit Hijau",
+    "category": "vegetables",
+    "is_priority": 1,
+    "canonical_unit": "kg"
+  },
+  {
+    "commodity_id": "tomato_fresh",
+    "canonical_name_id": "Tomat Segar",
+    "category": "vegetables",
+    "is_priority": 1,
+    "canonical_unit": "kg"
+  },
+  {
+    "commodity_id": "potato_granola",
+    "canonical_name_id": "Kentang",
+    "category": "vegetables",
+    "is_priority": 1,
+    "canonical_unit": "kg"
+  },
+  {
+    "commodity_id": "carrot_fresh",
+    "canonical_name_id": "Wortel",
+    "category": "vegetables",
+    "is_priority": 1,
+    "canonical_unit": "kg"
+  },
+  {
+    "commodity_id": "green_beans",
+    "canonical_name_id": "Buncis",
+    "category": "vegetables",
+    "is_priority": 1,
+    "canonical_unit": "kg"
+  },
+  {
+    "commodity_id": "cabbage",
+    "canonical_name_id": "Kubis / Kol",
+    "category": "vegetables",
+    "is_priority": 1,
+    "canonical_unit": "kg"
+  },
+  {
+    "commodity_id": "chicken_meat_broiler",
+    "canonical_name_id": "Daging Ayam Ras",
+    "category": "meat",
+    "is_priority": 0,
+    "canonical_unit": "kg"
+  },
+  {
+    "commodity_id": "chicken_meat_kampung",
+    "canonical_name_id": "Daging Ayam Kampung",
+    "category": "meat",
+    "is_priority": 0,
+    "canonical_unit": "ekor"
+  },
+  {
+    "commodity_id": "beef_quality_1",
+    "canonical_name_id": "Daging Sapi Kualitas 1",
+    "category": "meat",
+    "is_priority": 0,
+    "canonical_unit": "kg"
+  },
+  {
+    "commodity_id": "beef_quality_2",
+    "canonical_name_id": "Daging Sapi Kualitas 2",
+    "category": "meat",
+    "is_priority": 0,
+    "canonical_unit": "kg"
+  },
+  {
+    "commodity_id": "chicken_eggs_fresh",
+    "canonical_name_id": "Telur Ayam Ras",
+    "category": "eggs",
+    "is_priority": 0,
+    "canonical_unit": "kg"
+  },
+  {
+    "commodity_id": "cooking_oil_bulk",
+    "canonical_name_id": "Minyak Goreng Curah",
+    "category": "cooking_oil",
+    "is_priority": 0,
+    "canonical_unit": "kg"
+  },
+  {
+    "commodity_id": "cooking_oil_branded_1",
+    "canonical_name_id": "Minyak Goreng Kemasan Bermerk 1",
+    "category": "cooking_oil",
+    "is_priority": 0,
+    "canonical_unit": "kg"
+  },
+  {
+    "commodity_id": "cooking_oil_branded_2",
+    "canonical_name_id": "Minyak Goreng Kemasan Bermerk 2",
+    "category": "cooking_oil",
+    "is_priority": 0,
+    "canonical_unit": "kg"
+  },
+  {
+    "commodity_id": "sugar_premium",
+    "canonical_name_id": "Gula Pasir Premium",
+    "category": "sugar",
+    "is_priority": 0,
+    "canonical_unit": "kg"
+  },
+  {
+    "commodity_id": "sugar_local",
+    "canonical_name_id": "Gula Pasir Lokal",
+    "category": "sugar",
+    "is_priority": 0,
+    "canonical_unit": "kg"
+  }
+]

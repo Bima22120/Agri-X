@@ -1,0 +1,149 @@
+{
+  "run_id": "run_pihps_20261011_155506_7d52ab",
+  "source_id": "pihps",
+  "observed_date": "2026-10-09",
+  "validated_at_utc": "2026-10-11T08:55:12.965992+00:00",
+  "checks": {
+    "V1_row_count": {
+      "current_count": 50,
+      "prev_count": 50,
+      "drop_percentage": 0.0,
+      "status": "OK"
+    },
+    "V5_future_dates": {
+      "future_dates_count": 0,
+      "status": "PASS"
+    },
+    "V6_cross_source_check": {
+      "matched_series_count": 24,
+      "large_divergence_count": 2,
+      "flagged_series": [
+        {
+          "commodity_id": "chili_birdseye_red",
+          "pihps_wholesale": 45500,
+          "siskaperbapo_retail": 68435,
+          "difference_pct": 50.4
+        },
+        {
+          "commodity_id": "chili_birdseye_red",
+          "pihps_wholesale": 45500,
+          "siskaperbapo_retail": 68435,
+          "difference_pct": 50.4
+        }
+      ]
+    },
+    "V7_null_rate": {
+      "beef_quality_1": {
+        "total": 2,
+        "nulls": 0,
+        "null_rate_pct": 0.0
+      },
+      "beef_quality_2": {
+        "total": 2,
+        "nulls": 0,
+        "null_rate_pct": 0.0
+      },
+      "chicken_eggs_fresh": {
+        "total": 2,
+        "nulls": 0,
+        "null_rate_pct": 0.0
+      },
+      "chicken_meat_broiler": {
+        "total": 2,
+        "nulls": 0,
+        "null_rate_pct": 0.0
+      },
+      "chili_birdseye_green": {
+        "total": 2,
+        "nulls": 0,
+        "null_rate_pct": 0.0
+      },
+      "chili_birdseye_red": {
+        "total": 4,
+        "nulls": 0,
+        "null_rate_pct": 0.0
+      },
+      "chili_red_curly": {
+        "total": 4,
+        "nulls": 0,
+        "null_rate_pct": 0.0
+      },
+      "chili_red_large": {
+        "total": 2,
+        "nulls": 0,
+        "null_rate_pct": 0.0
+      },
+      "cooking_oil_branded_1": {
+        "total": 2,
+        "nulls": 0,
+        "null_rate_pct": 0.0
+      },
+      "cooking_oil_branded_2": {
+        "total": 2,
+        "nulls": 0,
+        "null_rate_pct": 0.0
+      },
+      "cooking_oil_bulk": {
+        "total": 2,
+        "nulls": 0,
+        "null_rate_pct": 0.0
+      },
+      "garlic_honan": {
+        "total": 4,
+        "nulls": 0,
+        "null_rate_pct": 0.0
+      },
+      "rice_low_1": {
+        "total": 2,
+        "nulls": 0,
+        "null_rate_pct": 0.0
+      },
+      "rice_low_2": {
+        "total": 2,
+        "nulls": 0,
+        "null_rate_pct": 0.0
+      },
+      "rice_medium_1": {
+        "total": 2,
+        "nulls": 0,
+        "null_rate_pct": 0.0
+      },
+      "rice_medium_2": {
+        "total": 2,
+        "nulls": 0,
+        "null_rate_pct": 0.0
+      },
+      "rice_super_1": {
+        "total": 2,
+        "nulls": 0,
+        "null_rate_pct": 0.0
+      },
+      "rice_super_2": {
+        "total": 2,
+        "nulls": 0,
+        "null_rate_pct": 0.0
+      },
+      "shallot_medium": {
+        "total": 4,
+        "nulls": 0,
+        "null_rate_pct": 0.0
+      },
+      "sugar_local": {
+        "total": 2,
+        "nulls": 0,
+        "null_rate_pct": 0.0
+      },
+      "sugar_premium": {
+        "total": 2,
+        "nulls": 0,
+        "null_rate_pct": 0.0
+      }
+    }
+  },
+  "summary": {
+    "total_rows": 50,
+    "valid_rows": 50,
+    "flagged_rows": 0,
+    "null_price_rows": 0
+  }
+}

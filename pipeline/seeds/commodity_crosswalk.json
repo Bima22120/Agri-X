@@ -1,0 +1,415 @@
+[
+  {
+    "source_id": "pihps",
+    "source_commodity_name": "Beras Kualitas Bawah I",
+    "commodity_id": "rice_low_1",
+    "factor": 1.0,
+    "notes": "PIHPS com_1"
+  },
+  {
+    "source_id": "pihps",
+    "source_commodity_name": "Beras Kualitas Bawah II",
+    "commodity_id": "rice_low_2",
+    "factor": 1.0,
+    "notes": "PIHPS com_2"
+  },
+  {
+    "source_id": "pihps",
+    "source_commodity_name": "Beras Kualitas Medium I",
+    "commodity_id": "rice_medium_1",
+    "factor": 1.0,
+    "notes": "PIHPS com_3"
+  },
+  {
+    "source_id": "pihps",
+    "source_commodity_name": "Beras Kualitas Medium II",
+    "commodity_id": "rice_medium_2",
+    "factor": 1.0,
+    "notes": "PIHPS com_4"
+  },
+  {
+    "source_id": "pihps",
+    "source_commodity_name": "Beras Kualitas Super I",
+    "commodity_id": "rice_super_1",
+    "factor": 1.0,
+    "notes": "PIHPS com_5"
+  },
+  {
+    "source_id": "pihps",
+    "source_commodity_name": "Beras Kualitas Super II",
+    "commodity_id": "rice_super_2",
+    "factor": 1.0,
+    "notes": "PIHPS com_6"
+  },
+  {
+    "source_id": "pihps",
+    "source_commodity_name": "Bawang Merah Ukuran Sedang",
+    "commodity_id": "shallot_medium",
+    "factor": 1.0,
+    "notes": "PIHPS com_11"
+  },
+  {
+    "source_id": "pihps",
+    "source_commodity_name": "Bawang Merah",
+    "commodity_id": "shallot_medium",
+    "factor": 1.0,
+    "notes": "PIHPS cat_5"
+  },
+  {
+    "source_id": "pihps",
+    "source_commodity_name": "Bawang Putih Ukuran Sedang",
+    "commodity_id": "garlic_honan",
+    "factor": 1.0,
+    "notes": "PIHPS com_12"
+  },
+  {
+    "source_id": "pihps",
+    "source_commodity_name": "Bawang Putih",
+    "commodity_id": "garlic_honan",
+    "factor": 1.0,
+    "notes": "PIHPS cat_6"
+  },
+  {
+    "source_id": "pihps",
+    "source_commodity_name": "Cabai Merah Besar",
+    "commodity_id": "chili_red_large",
+    "factor": 1.0,
+    "notes": "PIHPS com_13"
+  },
+  {
+    "source_id": "pihps",
+    "source_commodity_name": "Cabai Merah Keriting",
+    "commodity_id": "chili_red_curly",
+    "factor": 1.0,
+    "notes": "PIHPS com_14"
+  },
+  {
+    "source_id": "pihps",
+    "source_commodity_name": "Cabai Merah",
+    "commodity_id": "chili_red_curly",
+    "factor": 1.0,
+    "notes": "PIHPS cat_7"
+  },
+  {
+    "source_id": "pihps",
+    "source_commodity_name": "Cabai Rawit Hijau",
+    "commodity_id": "chili_birdseye_green",
+    "factor": 1.0,
+    "notes": "PIHPS com_15"
+  },
+  {
+    "source_id": "pihps",
+    "source_commodity_name": "Cabai Rawit Merah",
+    "commodity_id": "chili_birdseye_red",
+    "factor": 1.0,
+    "notes": "PIHPS com_16"
+  },
+  {
+    "source_id": "pihps",
+    "source_commodity_name": "Cabai Rawit",
+    "commodity_id": "chili_birdseye_red",
+    "factor": 1.0,
+    "notes": "PIHPS cat_8"
+  },
+  {
+    "source_id": "pihps",
+    "source_commodity_name": "Daging Ayam Ras Segar",
+    "commodity_id": "chicken_meat_broiler",
+    "factor": 1.0,
+    "notes": "PIHPS com_7"
+  },
+  {
+    "source_id": "pihps",
+    "source_commodity_name": "Daging Sapi Kualitas 1",
+    "commodity_id": "beef_quality_1",
+    "factor": 1.0,
+    "notes": "PIHPS com_8"
+  },
+  {
+    "source_id": "pihps",
+    "source_commodity_name": "Daging Sapi Kualitas 2",
+    "commodity_id": "beef_quality_2",
+    "factor": 1.0,
+    "notes": "PIHPS com_9"
+  },
+  {
+    "source_id": "pihps",
+    "source_commodity_name": "Telur Ayam Ras Segar",
+    "commodity_id": "chicken_eggs_fresh",
+    "factor": 1.0,
+    "notes": "PIHPS com_10"
+  },
+  {
+    "source_id": "pihps",
+    "source_commodity_name": "Minyak Goreng Curah",
+    "commodity_id": "cooking_oil_bulk",
+    "factor": 1.0,
+    "notes": "PIHPS com_17"
+  },
+  {
+    "source_id": "pihps",
+    "source_commodity_name": "Minyak Goreng Kemasan Bermerk 1",
+    "commodity_id": "cooking_oil_branded_1",
+    "factor": 1.0,
+    "notes": "PIHPS com_18"
+  },
+  {
+    "source_id": "pihps",
+    "source_commodity_name": "Minyak Goreng Kemasan Bermerk 2",
+    "commodity_id": "cooking_oil_branded_2",
+    "factor": 1.0,
+    "notes": "PIHPS com_19"
+  },
+  {
+    "source_id": "pihps",
+    "source_commodity_name": "Gula Pasir Kualitas Premium",
+    "commodity_id": "sugar_premium",
+    "factor": 1.0,
+    "notes": "PIHPS com_20"
+  },
+  {
+    "source_id": "pihps",
+    "source_commodity_name": "Gula Pasir Lokal",
+    "commodity_id": "sugar_local",
+    "factor": 1.0,
+    "notes": "PIHPS com_21"
+  },
+  {
+    "source_id": "siskaperbapo",
+    "source_commodity_name": "Beras Premium",
+    "commodity_id": "rice_premium",
+    "factor": 1.0,
+    "notes": "SISKAPERBAPO ID 2"
+  },
+  {
+    "source_id": "siskaperbapo",
+    "source_commodity_name": "- Beras Premium",
+    "commodity_id": "rice_premium",
+    "factor": 1.0,
+    "notes": "SISKAPERBAPO tabel item"
+  },
+  {
+    "source_id": "siskaperbapo",
+    "source_commodity_name": "Beras Medium",
+    "commodity_id": "rice_medium_1",
+    "factor": 1.0,
+    "notes": "SISKAPERBAPO ID 4"
+  },
+  {
+    "source_id": "siskaperbapo",
+    "source_commodity_name": "- Beras Medium",
+    "commodity_id": "rice_medium_1",
+    "factor": 1.0,
+    "notes": "SISKAPERBAPO tabel item"
+  },
+  {
+    "source_id": "siskaperbapo",
+    "source_commodity_name": "Bawang Merah",
+    "commodity_id": "shallot_medium",
+    "factor": 1.0,
+    "notes": "SISKAPERBAPO ID 39"
+  },
+  {
+    "source_id": "siskaperbapo",
+    "source_commodity_name": "- Bawang Merah",
+    "commodity_id": "shallot_medium",
+    "factor": 1.0,
+    "notes": "SISKAPERBAPO tabel item"
+  },
+  {
+    "source_id": "siskaperbapo",
+    "source_commodity_name": "Bawang Putih",
+    "commodity_id": "garlic_honan",
+    "factor": 1.0,
+    "notes": "SISKAPERBAPO ID 49"
+  },
+  {
+    "source_id": "siskaperbapo",
+    "source_commodity_name": "- Bawang Putih",
+    "commodity_id": "garlic_honan",
+    "factor": 1.0,
+    "notes": "SISKAPERBAPO tabel item"
+  },
+  {
+    "source_id": "siskaperbapo",
+    "source_commodity_name": "Cabe Merah Keriting",
+    "commodity_id": "chili_red_curly",
+    "factor": 1.0,
+    "notes": "SISKAPERBAPO ID 37"
+  },
+  {
+    "source_id": "siskaperbapo",
+    "source_commodity_name": "- Cabe Merah Keriting",
+    "commodity_id": "chili_red_curly",
+    "factor": 1.0,
+    "notes": "SISKAPERBAPO tabel item"
+  },
+  {
+    "source_id": "siskaperbapo",
+    "source_commodity_name": "Cabe Merah Besar",
+    "commodity_id": "chili_red_large",
+    "factor": 1.0,
+    "notes": "SISKAPERBAPO ID 38"
+  },
+  {
+    "source_id": "siskaperbapo",
+    "source_commodity_name": "- Cabe Merah Besar",
+    "commodity_id": "chili_red_large",
+    "factor": 1.0,
+    "notes": "SISKAPERBAPO tabel item"
+  },
+  {
+    "source_id": "siskaperbapo",
+    "source_commodity_name": "Cabe Rawit Merah",
+    "commodity_id": "chili_birdseye_red",
+    "factor": 1.0,
+    "notes": "SISKAPERBAPO ID 50"
+  },
+  {
+    "source_id": "siskaperbapo",
+    "source_commodity_name": "- Cabe Rawit Merah",
+    "commodity_id": "chili_birdseye_red",
+    "factor": 1.0,
+    "notes": "SISKAPERBAPO tabel item"
+  },
+  {
+    "source_id": "siskaperbapo",
+    "source_commodity_name": "Tomat",
+    "commodity_id": "tomato_fresh",
+    "factor": 1.0,
+    "notes": "SISKAPERBAPO"
+  },
+  {
+    "source_id": "siskaperbapo",
+    "source_commodity_name": "- Tomat",
+    "commodity_id": "tomato_fresh",
+    "factor": 1.0,
+    "notes": "SISKAPERBAPO tabel item"
+  },
+  {
+    "source_id": "siskaperbapo",
+    "source_commodity_name": "Kentang",
+    "commodity_id": "potato_granola",
+    "factor": 1.0,
+    "notes": "SISKAPERBAPO"
+  },
+  {
+    "source_id": "siskaperbapo",
+    "source_commodity_name": "- Kentang",
+    "commodity_id": "potato_granola",
+    "factor": 1.0,
+    "notes": "SISKAPERBAPO tabel item"
+  },
+  {
+    "source_id": "siskaperbapo",
+    "source_commodity_name": "Wortel",
+    "commodity_id": "carrot_fresh",
+    "factor": 1.0,
+    "notes": "SISKAPERBAPO"
+  },
+  {
+    "source_id": "siskaperbapo",
+    "source_commodity_name": "- Wortel",
+    "commodity_id": "carrot_fresh",
+    "factor": 1.0,
+    "notes": "SISKAPERBAPO tabel item"
+  },
+  {
+    "source_id": "siskaperbapo",
+    "source_commodity_name": "Buncis",
+    "commodity_id": "green_beans",
+    "factor": 1.0,
+    "notes": "SISKAPERBAPO ID 48"
+  },
+  {
+    "source_id": "siskaperbapo",
+    "source_commodity_name": "- Buncis",
+    "commodity_id": "green_beans",
+    "factor": 1.0,
+    "notes": "SISKAPERBAPO tabel item"
+  },
+  {
+    "source_id": "siskaperbapo",
+    "source_commodity_name": "Kubis",
+    "commodity_id": "cabbage",
+    "factor": 1.0,
+    "notes": "SISKAPERBAPO"
+  },
+  {
+    "source_id": "siskaperbapo",
+    "source_commodity_name": "- Kubis",
+    "commodity_id": "cabbage",
+    "factor": 1.0,
+    "notes": "SISKAPERBAPO tabel item"
+  },
+  {
+    "source_id": "siskaperbapo",
+    "source_commodity_name": "Daging Ayam Ras",
+    "commodity_id": "chicken_meat_broiler",
+    "factor": 1.0,
+    "notes": "SISKAPERBAPO ID 13"
+  },
+  {
+    "source_id": "siskaperbapo",
+    "source_commodity_name": "- Daging Ayam Ras",
+    "commodity_id": "chicken_meat_broiler",
+    "factor": 1.0,
+    "notes": "SISKAPERBAPO tabel item"
+  },
+  {
+    "source_id": "siskaperbapo",
+    "source_commodity_name": "Daging Ayam Kampung",
+    "commodity_id": "chicken_meat_kampung",
+    "factor": 1.0,
+    "notes": "SISKAPERBAPO ID 14"
+  },
+  {
+    "source_id": "siskaperbapo",
+    "source_commodity_name": "- Daging Ayam Kampung",
+    "commodity_id": "chicken_meat_kampung",
+    "factor": 1.0,
+    "notes": "SISKAPERBAPO tabel item"
+  },
+  {
+    "source_id": "siskaperbapo",
+    "source_commodity_name": "Daging Sapi Paha Belakang",
+    "commodity_id": "beef_quality_1",
+    "factor": 1.0,
+    "notes": "SISKAPERBAPO ID 12"
+  },
+  {
+    "source_id": "siskaperbapo",
+    "source_commodity_name": "- Daging Sapi Paha Belakang",
+    "commodity_id": "beef_quality_1",
+    "factor": 1.0,
+    "notes": "SISKAPERBAPO tabel item"
+  },
+  {
+    "source_id": "siskaperbapo",
+    "source_commodity_name": "Telur Ayam Ras",
+    "commodity_id": "chicken_eggs_fresh",
+    "factor": 1.0,
+    "notes": "SISKAPERBAPO"
+  },
+  {
+    "source_id": "siskaperbapo",
+    "source_commodity_name": "- Telur Ayam Ras",
+    "commodity_id": "chicken_eggs_fresh",
+    "factor": 1.0,
+    "notes": "SISKAPERBAPO tabel item"
+  },
+  {
+    "source_id": "siskaperbapo",
+    "source_commodity_name": "Gula Kristal Putih",
+    "commodity_id": "sugar_local",
+    "factor": 1.0,
+    "notes": "SISKAPERBAPO"
+  },
+  {
+    "source_id": "siskaperbapo",
+    "source_commodity_name": "- Gula Kristal Putih",
+    "commodity_id": "sugar_local",
+    "factor": 1.0,
+    "notes": "SISKAPERBAPO tabel item"
+  }
+]

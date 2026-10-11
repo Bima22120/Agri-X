@@ -1,0 +1,27 @@
+[
+  {
+    "market_id": "MKT_SUR_1",
+    "name": "Pasar Tambahrejo",
+    "region_id": "ID_3578"
+  },
+  {
+    "market_id": "MKT_SUR_2",
+    "name": "Pasar Wonokromo",
+    "region_id": "ID_3578"
+  },
+  {
+    "market_id": "MKT_SUR_3",
+    "name": "Pasar Genteng",
+    "region_id": "ID_3578"
+  },
+  {
+    "market_id": "MKT_SUR_4",
+    "name": "Pasar Pucang Anom",
+    "region_id": "ID_3578"
+  },
+  {
+    "market_id": "MKT_SUR_5",
+    "name": "Pasar Keputran",
+    "region_id": "ID_3578"
+  }
+]

@@ -1,0 +1,30 @@
+{
+  "run_id": "run_pihps_20261011_162103_66afe7",
+  "source_id": "pihps",
+  "observed_date": "2026-09-26",
+  "validated_at_utc": "2026-10-11T09:21:03.784621+00:00",
+  "checks": {
+    "V1_row_count": {
+      "current_count": 0,
+      "prev_count": 21,
+      "drop_percentage": 100.0,
+      "status": "ALERT"
+    },
+    "V5_future_dates": {
+      "future_dates_count": 0,
+      "status": "PASS"
+    },
+    "V6_cross_source_check": {
+      "matched_series_count": 0,
+      "large_divergence_count": 0,
+      "flagged_series": []
+    },
+    "V7_null_rate": {}
+  },
+  "summary": {
+    "total_rows": 0,
+    "valid_rows": 0,
+    "flagged_rows": 0,
+    "null_price_rows": 0
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "run_id": "run_siskaperbapo_20261011_162905_e08905",
+  "source_id": "siskaperbapo",
+  "observed_date": "2026-10-09",
+  "validated_at_utc": "2026-10-11T09:29:28.697772+00:00",
+  "checks": {
+    "V1_row_count": {
+      "current_count": 28,
+      "prev_count": 28,
+      "drop_percentage": 0.0,
+      "status": "OK"
+    },
+    "V5_future_dates": {
+      "future_dates_count": 0,
+      "status": "PASS"
+    },
+    "V6_cross_source_check": {
+      "matched_series_count": 9,
+      "large_divergence_count": 1,
+      "flagged_series": [
+        {
+          "commodity_id": "chili_birdseye_red",
+          "pihps_wholesale": 45500,
+          "siskaperbapo_retail": 68435,
+          "difference_pct": 50.4
+        }
+      ]
+    },
+    "V7_null_rate": {
+      "beef_quality_1": {
+        "total": 2,
+        "nulls": 0,
+        "null_rate_pct": 0.0
+      },
+      "carrot_fresh": {
+        "total": 2,
+        "nulls": 0,
+        "null_rate_pct": 0.0
+      },
+      "chicken_eggs_fresh": {
+        "total": 2,
+        "nulls": 0,
+        "null_rate_pct": 0.0
+      },
+      "chicken_meat_broiler": {
+        "total": 2,
+        "nulls": 0,
+        "null_rate_pct": 0.0
+      },
+      "chicken_meat_kampung": {
+        "total": 2,
+        "nulls": 0,
+        "null_rate_pct": 0.0
+      },
+      "chili_birdseye_red": {
+        "total": 2,
+        "nulls": 0,
+        "null_rate_pct": 0.0
+      },
+      "chili_red_curly": {
+        "total": 2,
+        "nulls": 0,
+        "null_rate_pct": 0.0
+      },
+      "chili_red_large": {
+        "total": 2,
+        "nulls": 0,
+        "null_rate_pct": 0.0
+      },
+      "green_beans": {
+        "total": 2,
+        "nulls": 0,
+        "null_rate_pct": 0.0
+      },
+      "potato_granola": {
+        "total": 2,
+        "nulls": 0,
+        "null_rate_pct": 0.0
+      },
+      "rice_medium_1": {
+        "total": 2,
+        "nulls": 0,
+        "null_rate_pct": 0.0
+      },
+      "rice_premium": {
+        "total": 2,
+        "nulls": 0,
+        "null_rate_pct": 0.0
+      },
+      "shallot_medium": {
+        "total": 2,
+        "nulls": 0,
+        "null_rate_pct": 0.0
+      },
+      "sugar_local": {
+        "total": 2,
+        "nulls": 0,
+        "null_rate_pct": 0.0
+      }
+    }
+  },
+  "summary": {
+    "total_rows": 28,
+    "valid_rows": 28,
+    "flagged_rows": 0,
+    "null_price_rows": 0
+  }
+}

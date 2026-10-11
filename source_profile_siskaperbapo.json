@@ -1,0 +1,113 @@
+{
+  "source_id": "siskaperbapo",
+  "source_name": "Sistem Informasi Ketersediaan dan Perkembangan Harga Bahan Pokok (SISKAPERBAPO)",
+  "owner": "Dinas Perindustrian dan Perdagangan (Disperindag) Pemprov Jawa Timur",
+  "base_url": "https://siskaperbapo.jatimprov.go.id",
+  "discovered_at": "2026-10-11T15:28:21.781842",
+  "access_method": {
+    "type": "xhr_post_html_and_json",
+    "description": "POST endpoint returning HTML table fragment for daily commodity prices, plus JSON endpoint for market references",
+    "primary_data_endpoint": "https://siskaperbapo.jatimprov.go.id/harga/tabel.nodesign",
+    "market_reference_endpoint": "https://siskaperbapo.jatimprov.go.id/harga/pasar.json/{kabkota_keycode}",
+    "multi_date_endpoint": "https://siskaperbapo.jatimprov.go.id/harga-komoditas"
+  },
+  "request_parameters": {
+    "tanggal": "string date in YYYY-MM-DD",
+    "kabkota": "string keycode (e.g. 'surabayakota', 'malangkab', or empty for entire Provinsi Jawa Timur)",
+    "pasar": "integer string market ID (or empty for all markets / regency average)"
+  },
+  "price_levels_supported": [
+    {
+      "code": "consumer_retail",
+      "name": "Tabel Harga Konsumen (Pasar Tradisional / Eceran)",
+      "is_primary_target": true
+    }
+  ],
+  "geographic_scope": {
+    "coverage": "Provinsi Jawa Timur (38 Kabupaten/Kota) and individual traditional markets within each regency/city",
+    "regencies_cities_count": 38
+  },
+  "update_frequency": "daily (can have intraday updates; page reflects observation date)",
+  "priority_commodities_mapping_sample": [
+    {
+      "source_name": "Beras Premium",
+      "unit": "kg",
+      "category": "rice",
+      "is_priority": true
+    },
+    {
+      "source_name": "Beras Medium",
+      "unit": "kg",
+      "category": "rice",
+      "is_priority": true
+    },
+    {
+      "source_name": "Cabe Merah Keriting",
+      "unit": "kg",
+      "category": "vegetables",
+      "is_priority": true
+    },
+    {
+      "source_name": "Cabe Merah Besar",
+      "unit": "kg",
+      "category": "vegetables",
+      "is_priority": true
+    },
+    {
+      "source_name": "Cabe Rawit Merah",
+      "unit": "kg",
+      "category": "vegetables",
+      "is_priority": true
+    },
+    {
+      "source_name": "Bawang Merah",
+      "unit": "kg",
+      "category": "vegetables",
+      "is_priority": true
+    },
+    {
+      "source_name": "Bawang Putih",
+      "unit": "kg",
+      "category": "vegetables",
+      "is_priority": true
+    },
+    {
+      "source_name": "Tomat",
+      "unit": "kg",
+      "category": "vegetables",
+      "is_priority": true
+    },
+    {
+      "source_name": "Buncis",
+      "unit": "kg",
+      "category": "vegetables",
+      "is_priority": true
+    },
+    {
+      "source_name": "Kentang",
+      "unit": "kg",
+      "category": "vegetables",
+      "is_priority": true
+    },
+    {
+      "source_name": "Wortel",
+      "unit": "kg",
+      "category": "vegetables",
+      "is_priority": true
+    }
+  ],
+  "sample_raw_row": {
+    "no": "",
+    "name": "- Beras Premium",
+    "unit": "kg",
+    "harga_kemarin": "16.333",
+    "harga_sekarang": "16.333",
+    "perubahan_nominal": "0",
+    "perubahan_persen": "0,00%"
+  },
+  "robots_txt_findings": {
+    "url": "https://siskaperbapo.jatimprov.go.id/robots.txt",
+    "status": 404,
+    "policy": "404 Not Found; pipeline will enforce strict 1 request per 2 seconds with jitter."
+  }
+}

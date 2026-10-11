@@ -1,0 +1,26 @@
+{
+  "data": [
+    {
+      "no": 1,
+      "name": "Beras Kualitas Medium I",
+      "level": 2,
+      "09/10/2026": "14,950",
+      "10/10/2026": "14,950",
+      "11/10/2026": "-"
+    },
+    {
+      "no": 2,
+      "name": "Cabai Rawit Merah",
+      "level": 2,
+      "09/10/2026": "42,500",
+      "10/10/2026": "43,000",
+      "11/10/2026": "n/a"
+    },
+    {
+      "no": 99,
+      "name": "Komoditas Eksperimen Belum Terpetakan",
+      "level": 2,
+      "09/10/2026": "50,000"
+    }
+  ]
+}

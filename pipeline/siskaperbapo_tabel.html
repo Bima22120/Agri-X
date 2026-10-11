@@ -1,0 +1,369 @@
+   <!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>SISKAPERBAPO</title>
+
+  <!-- Custom styles for this template -->
+  <script defer src="https://umami.indagjatim.com/script.js" data-website-id="eb3a7f07-7942-4d85-a724-e5c4e3e9d318"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <!-- Bootstrap 3.4.1 from CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+  <link href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/2.1.8/css/dataTables.bootstrap.css" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="https://siskaperbapo.jatimprov.go.id/assets/css/style.css" rel="stylesheet">
+
+  <!-- Bootstrap 3.4.1 JS from CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+  <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
+  <script src="https://cdn.datatables.net/2.1.8/js/dataTables.bootstrap.js"></script>
+  <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+  <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  <style type="text/css">
+    .jumbotron {
+      background-image: url("https://siskaperbapo.jatimprov.go.id/assets/images/header2019.jpg");
+      height: 116px;
+      margin-bottom: 10px;
+      background-position: center top;
+      background-size: 100% 116px;
+    }
+
+    .navbar {
+      margin-bottom: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .jumbotron {
+        height: 60px;
+        background-size: 100% 60px;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .sdright {
+        padding-left: 0px;
+      }
+    }
+
+    .page_detail {
+      margin-top: 25px;
+      margin-bottom: 25px;
+    }
+
+    .page_detail img {
+      margin-right: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <!-- Static navbar -->
+    <div class="navbar navbar-inverse" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="https://siskaperbapo.jatimprov.go.id">SISKAPERBAPO</a>
+        </div>
+
+
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tabel <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+
+                <li><a href="https://siskaperbapo.jatimprov.go.id/harga/tabel">Harga Konsumen (per Area)</a></li>
+                <li><a href="https://siskaperbapo.jatimprov.go.id/harga-komoditas">Harga Konsumen (per Komoditas)</a></li>
+                <li><a href="/produsen/tabel">Harga Produsen</a></li>
+                <!-- <li><a href="/ketersediaan/tabel">Ketersediaan</a></li> -->
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Grafik <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="https://siskaperbapo.jatimprov.go.id/harga/grafik">Harga Konsumen</a></li>
+                <li><a href="/produsen/grafik">Harga Produsen</a></li>
+                <!--<li><a href="/ketersediaan/grafik">Ketersediaan</a></li>-->
+              </ul>
+            </li>
+            
+            <li><a href="https://siskaperbapo.jatimprov.go.id/tren">Tren</a></li>
+            <!--
+          <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Data Analisis <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="/harga/tabel">Harga Konsumen (per Area)</a></li>
+                  <li><a href="/harga-komoditas">Harga Konsumen (per Komoditas)</a></li>
+                  <li><a href="/produsen/tabel">Harga Produsen</a></li>                 
+                </ul>
+          </li>
+		 -->
+            <li><a href="/info">Informasi</a></li>
+
+            <!-- <li><a href="/ketersediaan">Ketersediaan</a></li> -->
+            <li><a href="/profilpasar">Profil Pasar</a></li>
+            <li><a href="/display/show">Display</a></li>
+            <li><a href="https://siskaperbapo.jatimprov.go.id/panduan_manual_SISKAPERBAPO.pdf">Panduan</a></li>
+          </ul>
+                      <ul class="nav navbar-nav navbar-right">
+              <li><a href="https://siskaperbapo.jatimprov.go.id/login2.php">Login</a></li>
+            </ul>
+          
+        </div><!--/.nav-collapse -->
+
+      </div><!--/.container-fluid -->
+    </div>
+          <div class="jumbotron">
+      </div>
+    
+    <!-- Main component for a primary marketing message or call to action -->
+            <ol class="breadcrumb">
+          <li><a href="/">Home</a></li>
+          <li>Harga</li>
+          <li>Tabel</li>        </ol>
+        <script type="text/javascript" src="https://siskaperbapo.jatimprov.go.id/assets/datetimepicker/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<script type="text/javascript" src="https://siskaperbapo.jatimprov.go.id/assets/datetimepicker/js/locales/bootstrap-datetimepicker.id.js" charset="UTF-8"></script>
+<link href="https://siskaperbapo.jatimprov.go.id/assets/datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+<!-- jQuery qTip2 from CDN (minified) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.js"></script>
+<script type='text/javascript' src="https://siskaperbapo.jatimprov.go.id/assets/js/price-tooltip.js"></script>
+<link rel="stylesheet" type="text/css" href="https://siskaperbapo.jatimprov.go.id/assets/css/price-tooltip.css"/>
+<script type="text/javascript">
+  $(document).ready(function() {
+    // autocomplete
+    $('#datepicker').datetimepicker({
+      format: 'yyyy-mm-dd',
+      autoclose: true,
+      minView: 2,
+      startView: 2,
+      pickTime: false
+    });
+
+        
+    // pilih pasar
+    pilihPasar();
+    LoadPage();
+    
+    // Initialize enhanced price tooltips after loading page content
+    initializePriceTooltips();
+  });
+
+
+  function pilihPasar() {
+    var val = $('select[name=kabkota]').val();
+
+    $('select[name=pasar]').empty();
+    $.getJSON('https://siskaperbapo.jatimprov.go.id/harga/pasar.json/' + val, function(data) {
+      html = '<option value="">- Semua Pasar -</option>';
+      $('select[name=pasar]').append(html);
+      $.each(data, function(i, psr) {
+        html = '<option value="' + psr.psr_id + '">' + psr.psr_nama + '</option>';
+        $('select[name=pasar]').append(html);
+      });
+    });
+
+  }
+
+  function LoadPage() {
+    var tanggal = $('#tanggal').val();
+    var kabkota = $('#kabkota').val();
+    var pasar = $('#pasar').val();
+    $("#contentloader").html('<center><img src="/assets/images/loading.gif"></center>');
+    var url = 'https://siskaperbapo.jatimprov.go.id/harga/tabel.nodesign';
+    $.ajax({
+      type: "POST",
+      url: url,
+      data: $("#form1").serialize(),
+    }).done(function(data) {
+      $("#contentloader").html(data);
+      // Reinitialize tooltips after content loads
+      initializePriceTooltips();
+    });
+  }
+  
+  function initializePriceTooltips() {
+    if (window.priceTooltipManager) {
+      // Add tooltips to commodity names in the price table
+      window.priceTooltipManager.addTooltips('.price-tooltip-enabled[data-commodity-id]', function(element) {
+        return element.data('commodity-id');
+      }, function(element) {
+        return $('#tanggal').val(); // Use selected date from form
+      });
+    }
+  }
+
+  function ShowQRCode() {
+    var tanggal = $('#tanggal').val();
+    var kabkota = $('#kabkota').val();
+    var pasar = $('#pasar').val();
+    var url = 'https://siskaperbapo.jatimprov.go.id/harga/tabel.getQR';
+    $.ajax({
+      type: "POST",
+      url: url,
+      data: $("#form1").serialize(),
+    }).done(function(data) {
+      $("#QRContent").html(data);
+      $("#QRModal").modal('show');
+    });
+  }
+
+  function printQRCode() {
+    w = window.open();
+    w.document.write($('#QRCodeContainer').html());
+    w.print();
+    w.close();
+  }
+</script>
+
+<div class="panel panel-default">
+  <div class="panel-heading panel-title">
+    Tabel Harga Konsumen
+  </div>
+
+  <div class="panel-body">
+    <form class="form-inline" id="form1">
+      <div class="form-group">
+        <label for="exampleInputEmail2">Tanggal : </label>
+        <div class="input-group date" id="datepicker">
+
+          <input type="text" class="form-control" id="tanggal" name="tanggal" value="2026-10-11" readonly>
+          <div class="input-group-addon">
+            <span class="glyphicon glyphicon-calendar"></span>
+          </div>
+
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail3">&nbsp; Area : </label>
+        <select class="form-control" name="kabkota" id="kabkota" onchange="pilihPasar();">
+          <option value="">- Provinsi Jawa Timur -</option>
+          <option value='bangkalankab'>Kabupaten Bangkalan</option><option value='banyuwangikab'>Kabupaten Banyuwangi</option><option value='blitarkab'>Kabupaten Blitar</option><option value='bojonegorokab'>Kabupaten Bojonegoro</option><option value='bondowosokab'>Kabupaten Bondowoso</option><option value='gresikkab'>Kabupaten Gresik</option><option value='jemberkab'>Kabupaten Jember</option><option value='jombangkab'>Kabupaten Jombang</option><option value='kedirikab'>Kabupaten Kediri</option><option value='lamongankab'>Kabupaten Lamongan</option><option value='lumajangkab'>Kabupaten Lumajang</option><option value='madiunkab'>Kabupaten Madiun</option><option value='magetankab'>Kabupaten Magetan</option><option value='malangkab'>Kabupaten Malang</option><option value='mojokertokab'>Kabupaten Mojokerto</option><option value='nganjukkab'>Kabupaten Nganjuk</option><option value='ngawikab'>Kabupaten Ngawi</option><option value='pacitankab'>Kabupaten Pacitan</option><option value='pamekasankab'>Kabupaten Pamekasan</option><option value='pasuruankab'>Kabupaten Pasuruan</option><option value='ponorogokab'>Kabupaten Ponorogo</option><option value='probolinggokab'>Kabupaten Probolinggo</option><option value='sampangkab'>Kabupaten Sampang</option><option value='sidoarjokab'>Kabupaten Sidoarjo</option><option value='situbondokab'>Kabupaten Situbondo</option><option value='sumenepkab'>Kabupaten Sumenep</option><option value='trenggalekkab'>Kabupaten Trenggalek</option><option value='tubankab'>Kabupaten Tuban</option><option value='tulungagungkab'>Kabupaten Tulungagung</option><option value='batukota'>Kota Batu</option><option value='blitarkota'>Kota Blitar</option><option value='kedirikota'>Kota Kediri</option><option value='madiunkota'>Kota Madiun</option><option value='malangkota'>Kota Malang</option><option value='mojokertokota'>Kota Mojokerto</option><option value='pasuruankota'>Kota Pasuruan</option><option value='probolinggokota'>Kota Probolinggo</option><option value='surabayakota'>Kota Surabaya</option>        </select>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail3">&nbsp; Pasar : </label>
+        <select class="form-control" name="pasar" id="pasar">
+        </select>
+      </div>
+      <button type="button" class="btn btn-primary" onClick="LoadPage()">Tampilkan</button>
+      <button type="button" class="btn btn-info" onClick="ShowQRCode()">Tampilkan QR</button>
+    </form>
+    <hr />
+    <div id="contentloader">
+    </div>
+
+  </div>
+</div>
+
+
+<!-- WAIT MODAL -->
+
+<!-- Modal Start here-->
+<div class="modal fade bs-example-modal-sm" id="myPleaseWait" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">
+          <span class="glyphicon glyphicon-time">
+          </span>Please Wait
+        </h4>
+      </div>
+      <div class="modal-body">
+        <div class="progress">
+          <div class="progress-bar progress-bar-info progress-bar-striped active" style="width: 100%">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal ends Here -->
+
+<!-- Modal Start here-->
+<div class="modal fade" id="QRModal" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4><span class="glyphicon glyphicon-qrcode"></span> QR Code</h4>
+      </div>
+      <div class="modal-body">
+        <div id="QRContent">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-info" onClick="printQRCode()">Print</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal ends Here -->
+  </div> <!-- /container -->
+
+
+  <!-- /container -->
+  <div class="footer">
+    <div class="container">
+      <p class="text-muted">
+        &copy 2011 - 2026 . dikelola Disperindag Jatim, Hak Cipta dilindungi      </p>
+    </div>
+  </div>
+  <!-- Bootstrap core JavaScript
+
+    ================================================== -->
+  <!--Start of Tawk.to Script-->
+  <script type="text/javascript">
+    var Tawk_API = Tawk_API || {},
+      Tawk_LoadStart = new Date();
+    (function() {
+      var s1 = document.createElement("script"),
+        s0 = document.getElementsByTagName("script")[0];
+      s1.async = true;
+      s1.src = 'https://embed.tawk.to/66305b651ec1082f04e8fa09/1hsmea1se';
+      s1.charset = 'UTF-8';
+      s1.setAttribute('crossorigin', '*');
+      s0.parentNode.insertBefore(s1, s0);
+    })();
+  </script>
+  <!--End of Tawk.to Script-->
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NHTXQ5PN3B"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-NHTXQ5PN3B');
+  </script>
+
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920" integrity="sha512-L0ha0OXavK/8okipN9F8BtP84dg9DUhPERbBXzwI6dgTA55d2+yweo3pn5CSFYs45/r8md2+xvUPtTdvTNRfjA==" data-cf-beacon='{"version":"2024.11.0","token":"1f9db69a91b34a5e930231131fd93039","spa":2}' crossorigin="anonymous"></script>
+</body>
+
+</html>

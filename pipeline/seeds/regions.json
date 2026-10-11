@@ -1,0 +1,92 @@
+[
+  {
+    "region_id": "ID_NAT",
+    "name": "Nasional (Indonesia)",
+    "level": "national",
+    "parent_region_id": null
+  },
+  {
+    "region_id": "ID_35",
+    "name": "Jawa Timur",
+    "level": "province",
+    "parent_region_id": "ID_NAT"
+  },
+  {
+    "region_id": "ID_3578",
+    "name": "Kota Surabaya",
+    "level": "regency_city",
+    "parent_region_id": "ID_35"
+  },
+  {
+    "region_id": "ID_3573",
+    "name": "Kota Malang",
+    "level": "regency_city",
+    "parent_region_id": "ID_35"
+  },
+  {
+    "region_id": "ID_3507",
+    "name": "Kabupaten Malang",
+    "level": "regency_city",
+    "parent_region_id": "ID_35"
+  },
+  {
+    "region_id": "ID_3571",
+    "name": "Kota Kediri",
+    "level": "regency_city",
+    "parent_region_id": "ID_35"
+  },
+  {
+    "region_id": "ID_3506",
+    "name": "Kabupaten Kediri",
+    "level": "regency_city",
+    "parent_region_id": "ID_35"
+  },
+  {
+    "region_id": "ID_3510",
+    "name": "Kabupaten Banyuwangi",
+    "level": "regency_city",
+    "parent_region_id": "ID_35"
+  },
+  {
+    "region_id": "ID_3509",
+    "name": "Kabupaten Jember",
+    "level": "regency_city",
+    "parent_region_id": "ID_35"
+  },
+  {
+    "region_id": "ID_3574",
+    "name": "Kota Probolinggo",
+    "level": "regency_city",
+    "parent_region_id": "ID_35"
+  },
+  {
+    "region_id": "ID_3513",
+    "name": "Kabupaten Probolinggo",
+    "level": "regency_city",
+    "parent_region_id": "ID_35"
+  },
+  {
+    "region_id": "ID_3577",
+    "name": "Kota Madiun",
+    "level": "regency_city",
+    "parent_region_id": "ID_35"
+  },
+  {
+    "region_id": "ID_3519",
+    "name": "Kabupaten Madiun",
+    "level": "regency_city",
+    "parent_region_id": "ID_35"
+  },
+  {
+    "region_id": "ID_3515",
+    "name": "Kabupaten Sidoarjo",
+    "level": "regency_city",
+    "parent_region_id": "ID_35"
+  },
+  {
+    "region_id": "ID_3525",
+    "name": "Kabupaten Gresik",
+    "level": "regency_city",
+    "parent_region_id": "ID_35"
+  }
+]

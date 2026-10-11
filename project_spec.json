@@ -1,0 +1,248 @@
+{
+  "schema_version": "1.0",
+  "source_doc": "Rencana Proyek Perangkat Lunak: Platform Transparansi Harga dan Marketplace B2B Agrikultur Jawa Timur v1.0",
+  "language_of_ui": "id-ID",
+  "legend": {
+    "assumption": "Value proposed by planner, needs confirmation",
+    "open_decision": "Not decided yet; do not hardcode"
+  },
+  "project": {
+    "name": "agri-price-b2b-platform",
+    "type": "web_application",
+    "summary": "Public national wholesale price transparency dashboard (PIHPS data, daily, trading-style UI) plus a B2B agri marketplace (farmers/cooperatives to restaurants, SMEs, cafes, hotels) limited to major East Java cities.",
+    "primary_focus": "price_transparency",
+    "secondary_focus": "b2b_marketplace",
+    "geo_scope_marketplace": ["East Java major cities"],
+    "pilot_city": {"value": "Surabaya", "status": "assumption"},
+    "initial_commodities": ["vegetables", "rice"],
+    "non_goals": [
+      "sales outside major East Java cities",
+      "futures trading or speculation features",
+      "blockchain (deferred)",
+      "own logistics fleet or own warehouse",
+      "commodities other than vegetables and rice"
+    ]
+  },
+  "team": [
+    {"role": "developer", "count": 1},
+    {"role": "market_and_finance_analyst", "count": 1},
+    {"role": "food_agri_product_expert", "count": 1}
+  ],
+  "team_gaps": ["operations_and_customer_support", "ui_ux_design", "legal_counsel"],
+  "user_roles": [
+    {"id": "public", "auth_required": false, "needs": ["view prices and trends"]},
+    {"id": "seller", "entity": ["cooperative", "farmer_group", "farmer"], "needs": ["see reference prices", "list products", "receive payment"]},
+    {"id": "buyer", "entity": ["restaurant", "cafe", "hotel", "msme"], "needs": ["find supply with clear grade", "fair price", "scheduled delivery"]},
+    {"id": "advertiser", "needs": ["reach agri audience"]},
+    {"id": "admin", "needs": ["manage users, catalog, transactions, ads, subscriptions"]},
+    {"id": "qc", "needs": ["record QC results"]}
+  ],
+  "pillars": {
+    "price_dashboard": {
+      "priority": 1,
+      "data_source": {
+        "name": "PIHPS",
+        "update_frequency": "daily",
+        "price_level": "wholesale",
+        "coverage": "national; province and city level where available; East Java featured",
+        "label_policy": "Never label as 'realtime'. Show 'updated daily' and last-updated timestamp.",
+        "legal_check_required": true,
+        "legal_check_scope": ["redisplay", "processing", "commercial use", "premium/API resale", "attribution"],
+        "commercial_strategy": "monetize analytics and service, not raw data"
+      },
+      "ui_style": "trading-app style (ticker board, line and daily candlestick charts, up/down indicators)",
+      "disclaimer": "Information only. Not a trading or speculation facility.",
+      "features": [
+        {"id": "ticker_board", "desc": "Commodity list with last price and daily/weekly/monthly change (nominal and percent)", "tier": "free"},
+        {"id": "trend_charts", "desc": "Per-commodity charts; ranges 7d, 30d, 1y, custom; line and candlestick", "tier": "free"},
+        {"id": "region_comparison", "desc": "Heatmap or table of price differences across provinces and cities", "tier": "free"},
+        {"id": "commodity_period_comparison", "desc": "Compare commodities and time periods", "tier": "free"},
+        {"id": "watchlist", "desc": "Saved commodities", "tier": "free_registered"},
+        {"id": "price_alerts_basic", "desc": "Email or WhatsApp alerts", "tier": "free_registered"},
+        {"id": "price_alerts_advanced", "desc": "Advanced alert rules", "tier": "premium"},
+        {"id": "methodology_page", "desc": "Source, calculation, definition of reference price, limitations, revision history", "tier": "free"},
+        {"id": "csv_export", "desc": "Limited in free, full in premium", "tier": "free_limited_premium_full"},
+        {"id": "data_quality_indicator", "desc": "Timestamp, delayed-data flag, missing-value flag", "tier": "free"},
+        {"id": "public_api", "desc": "Free quota plus paid plans", "tier": "later_phase"}
+      ],
+      "transparency_rules": [
+        "Reference prices are public without login",
+        "Methodology, sources, revisions are public",
+        "Reference price (PIHPS) and marketplace transaction price are strictly separated and labeled separately",
+        "Marketplace prices never alter reference price figures",
+        "Per-farmer and per-buyer transaction details are private; only anonymous aggregates may be public"
+      ]
+    },
+    "marketplace": {
+      "priority": 2,
+      "model": "B2B, sellers (cooperatives/farmer groups) to small-medium business buyers",
+      "supply": {
+        "initial_partners": 6,
+        "partner_types": ["cooperative", "farmer_group"],
+        "seller_verification": ["identity", "location", "commodity", "supply capacity"],
+        "seller_manages": ["commodity", "grade", "price", "available stock", "harvest/ship schedule"],
+        "recommendation": "cooperatives as main aggregators"
+      },
+      "catalog": {
+        "filters": ["commodity", "grade", "origin region", "price", "min volume", "availability date", "seller verification status"],
+        "grade_system": {
+          "status": "assumption",
+          "levels": ["A", "B", "C"],
+          "criteria": "written per commodity; vegetables: size, freshness, damage rate; rice: moisture, broken grain; refer to SNI where relevant",
+          "authored_with": "food_agri_product_expert"
+        },
+        "listing_requires_photos": true,
+        "show_price_vs_reference_delta": true
+      },
+      "order_flow": [
+        {"step": 1, "actor": "buyer", "action": "search, select listing, create order (quantity, delivery date)"},
+        {"step": 2, "actor": "buyer", "action": "pay full amount upfront via managed payment; funds held until receipt confirmed"},
+        {"step": 3, "actor": "seller", "action": "confirm and prepare goods per ordered grade"},
+        {"step": 4, "actor": "third_party_logistics", "action": "pickup and deliver"},
+        {"step": 5, "actor": "buyer", "action": "receive and inspect within claim window"},
+        {"step": 6, "actor": "platform", "action": "release funds to seller minus commission after confirmation or window expiry"},
+        {"step": 7, "actor": "platform", "action": "if claim: dispute resolution using photo and QC evidence; partial or full refund"}
+      ],
+      "claim_window": {"value": null, "status": "open_decision"},
+      "payment_policy": {
+        "mode": "prepaid_cash_before_shipping",
+        "escrow": true,
+        "credit_terms": "not offered initially; evaluate limited terms for verified buyers after transaction history exists"
+      },
+      "qc": {
+        "current": "sampling on some shipments",
+        "recommended": "risk-based sampling: more for new sellers, perishables, high-value orders",
+        "records": ["checklist", "photos", "grade value"],
+        "effects": "feeds seller reputation score; repeated failures lead to downgrade or suspension"
+      },
+      "logistics": {
+        "mode": "third_party_local",
+        "collection_point": false,
+        "initial_integration": ["order record", "courier assignment", "delivery status (manual or semi-auto)", "proof of delivery (photo or digital signature)"],
+        "rules": ["delivery time windows (e.g. morning)", "packaging standards for perishables"],
+        "later": "consider simple collection point to consolidate orders"
+      },
+      "disintermediation_controls": [
+        "managed payment and dispute protection as core value",
+        "contact details released only after transaction and only as needed for delivery",
+        "reputation score, access to new buyers, loyalty and volume incentives",
+        "terms of service clause"
+      ]
+    }
+  },
+  "business_model": {
+    "revenue_streams": [
+      {"id": "transaction_commission", "basis": "percent of order value", "rate": null, "status": "open_decision"},
+      {"id": "premium_subscription", "includes": ["advanced alerts", "data export", "trend analytics", "reports", "API"], "price": null, "status": "open_decision"},
+      {"id": "advertising", "placement": ["dashboard", "marketplace"], "enabled_when": "audience sufficiently large", "rate": null},
+      {"id": "paid_product_promotion", "placement": "featured listings", "label_required": "Iklan/Promosi"}
+    ],
+    "principles": [
+      "Ads and promotions must not influence reference price figures",
+      "Ads and promotions must be clearly labeled",
+      "Commercialization goal: cover system maintenance; compute break-even early"
+    ]
+  },
+  "functional_requirements": {
+    "common": ["registration and login (dashboard public without login)", "profile management", "role-based access: public, seller, buyer, admin, qc", "email and WhatsApp notifications"],
+    "dashboard": ["daily data ingestion and storage", "validation and cleaning", "interactive charts", "comparisons", "watchlist", "alerts", "export", "methodology page"],
+    "marketplace": ["seller onboarding and verification", "listing and stock management", "catalog with grade filter", "cart and orders", "managed payment", "order status", "logistics integration", "reviews and reputation score", "dispute module", "reports"],
+    "admin": ["user management and verification", "commodity and grade criteria management", "QC result input", "transaction monitoring", "ads and subscription management", "operations dashboard", "audit log"]
+  },
+  "non_functional_requirements": {
+    "performance": "fast load on typical mobile connections; mobile-first",
+    "reliability": ["daily ingestion job monitored with failure alerts", "scheduled backups"],
+    "security": ["TLS everywhere", "secure password storage", "role-based access control", "common web attack protection", "no own card data storage (delegate to payment provider)"],
+    "usability": ["simple Indonesian-language UI", "friendly to low-tech users", "optional WhatsApp-based order flow for some sellers"],
+    "data_integrity": "audit log for every change to prices, listings, transactions; no blockchain in early phase",
+    "scalability": "modular architecture; extensible to more cities, commodities, data sources"
+  },
+  "architecture": {
+    "pattern": "modular monolith (not microservices)",
+    "frontend": {"type": "responsive web app", "suggested": ["React", "Next.js"], "charts": ["lightweight-charts", "ECharts"]},
+    "backend": {"type": "single API service", "suggested": ["Node.js", "Python/Django"], "modules": ["prices", "marketplace", "payments", "admin"]},
+    "database": {"primary": "PostgreSQL", "timeseries": "indexed tables with aggregation; consider time-series extension if volume grows"},
+    "ingestion": {
+      "mechanism": "daily scheduled job (cron/worker)",
+      "steps": ["fetch", "validate", "normalize", "store"],
+      "keep_raw_data": true,
+      "normalization": "map PIHPS commodity names, units, regions to consistent internal schema"
+    },
+    "cache": "Redis or simple cache for frequent dashboard endpoints",
+    "payments": "local payment gateway (virtual account, e-wallet, QRIS) with fund-holding support per provider and regulation",
+    "notifications": ["email", "WhatsApp Business API"],
+    "hosting": ["cloud with controlled cost", "CDN for static assets", "monitoring and logging"],
+    "devops": ["simple CI/CD", "staging environment", "automated backups"]
+  },
+  "data_model_hints": {
+    "entities": [
+      "User", "Role", "Organization(seller|buyer)", "Commodity", "CommodityVariant", "Unit", "Region(province|city)",
+      "PriceObservation(commodity, region, date, price, source, raw_ref, ingested_at)",
+      "PriceAlert", "Watchlist", "Listing(seller, commodity, grade, price, stock, photos, availability)",
+      "GradeCriteria(commodity, level, criteria)", "Order", "OrderItem", "Payment(escrow_status)",
+      "Shipment(provider, status, proof)", "QCRecord(order, checklist, photos, grade)", "Dispute", "Review",
+      "ReputationScore", "Subscription", "Ad", "AuditLog"
+    ],
+    "constraints": [
+      "PriceObservation is append-only; revisions create new versions",
+      "Reference price and marketplace price stored in separate tables"
+    ]
+  },
+  "roadmap": [
+    {"phase": 0, "name": "Preparation", "duration_estimate": "~1 month", "tasks": ["review PIHPS terms and data structure", "choose initial commodities, define reference price", "design DB schema", "set up legal entity and PSE registration", "write grade criteria with food expert", "validate with users and 6 supply partners"]},
+    {"phase": 1, "name": "Price dashboard", "duration_estimate": "~2-3 months", "tasks": ["daily pipeline and history storage", "ticker, trend charts, region comparison, methodology page", "free public launch, collect feedback, measure traffic"]},
+    {"phase": 2, "name": "Marketplace pilot", "duration_estimate": "~3-4 months", "tasks": ["onboard 6 partners, initial vegetable and rice listings", "order flow, managed prepaid payment, courier integration, QC", "limited launch in one city with limited buyers", "measure GMV, repeat orders, claim rate, delivery time, operating margin"]},
+    {"phase": 3, "name": "Monetization and hardening", "duration_estimate": "~2-3 months", "tasks": ["premium subscription and advanced alerts", "labeled ads and paid promotions", "reputation score, mature dispute module, partner reports"]},
+    {"phase": 4, "name": "Expansion", "duration_estimate": null, "tasks": ["add East Java cities, commodities, logistics partners", "evaluate collection point or shared warehouse", "evaluate blockchain only if non-government data or provenance need arises"]}
+  ],
+  "kpis": {
+    "dashboard": ["monthly active users", "sessions per user", "retention", "registered users and watchlists", "daily update success rate", "premium subscribers"],
+    "marketplace": ["active sellers and buyers", "GMV", "order count", "repeat order rate", "claim/refund rate", "on-time delivery", "QC pass rate", "logistics cost per order", "commission revenue"],
+    "farmer_impact": ["selling price vs previous channel", "time to payment", "volume sold via platform"],
+    "finance": ["monthly operating cost", "revenue by source", "break-even point"]
+  },
+  "risks": [
+    {"id": "R1", "risk": "PIHPS terms restrict commercialization", "mitigation": "check in phase 0; sell analytics value-add; consider formal cooperation"},
+    {"id": "R2", "risk": "Single data source dependency", "mitigation": "store own history, monitor format changes, add sources if permitted"},
+    {"id": "R3", "risk": "Inconsistent supply", "mitigation": "multiple suppliers per commodity, stock buffer, availability communication"},
+    {"id": "R4", "risk": "Perishables damaged in transit", "mitigation": "packaging standards, delivery windows, vetted logistics, clear claim policy"},
+    {"id": "R5", "risk": "Prepayment lowers buyer conversion", "mitigation": "escrow and claim protection; evaluate limited credit terms later"},
+    {"id": "R6", "risk": "Off-platform transactions", "mitigation": "managed payments, reputation, incentives, ToS"},
+    {"id": "R7", "risk": "Conflict of interest (price provider and marketplace)", "mitigation": "separate reference vs transaction prices, open methodology, labeled ads"},
+    {"id": "R8", "risk": "Mistaken for futures trading facility", "mitigation": "clear disclaimer; no contract trading or speculation features"},
+    {"id": "R9", "risk": "Limited team capacity (1 developer)", "mitigation": "phased scope, simple monolith, strict prioritization, hire help"},
+    {"id": "R10", "risk": "Digital divide for farmers", "mitigation": "simple UI, cooperative-led onboarding, WhatsApp channel"},
+    {"id": "R11", "risk": "Operating cost exceeds revenue", "mitigation": "compute break-even; test commission and subscription during pilot"},
+    {"id": "R12", "risk": "Price data quality issues", "mitigation": "automated validation, quality flags, methodology notes"}
+  ],
+  "legal_compliance_checklist": [
+    "legal entity and business license (NIB)",
+    "PSE registration and personal data protection compliance",
+    "payment and fund-holding via licensed providers",
+    "marketplace and ad/subscription taxation",
+    "food safety and quality rules for fresh food distribution",
+    "terms of service, privacy policy, dispute/refund policy",
+    "agreements with cooperatives, farmer groups, logistics partners",
+    "PIHPS data usage terms"
+  ],
+  "open_decisions": [
+    "MVP budget and target date",
+    "commission rate, subscription price, ad rates",
+    "claim window length for fresh produce and rice",
+    "actual PIHPS wholesale commodity and region coverage",
+    "logistics partner and payment gateway selection",
+    "collection point or warehouse need in expansion",
+    "commercial-use permission for PIHPS data",
+    "blockchain adoption in later phase"
+  ],
+  "next_actions_30_days": [
+    "review PIHPS terms and run test data pull to map commodities, units, regions",
+    "decide reference price definition and draft methodology page",
+    "define vegetable and rice grade criteria with food expert",
+    "interview 6 cooperatives and 10-15 prospective buyers",
+    "shortlist logistics partners and payment gateways and compare costs",
+    "build simple financial model with break-even",
+    "produce dashboard wireframes and start phase 1 development",
+    "consult legal counsel on framework"
+  ]
+}
