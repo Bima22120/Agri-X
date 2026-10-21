@@ -9,7 +9,8 @@ import {
   Truck, 
   Clock, 
   TrendingDown, 
-  AlertCircle, 
+  AlertCircle,
+  AlertTriangle,
   Star, 
   CreditCard, 
   HelpCircle,
@@ -462,7 +463,7 @@ export const Marketplace = ({
 
       {/* ── CHECKOUT / ESCROW PAYMENT MODAL (Clean Light Theme) ── */}
       {activeModalListing && (
-        <div className="modal-overlay" onClick={() => !isProcessingPayment && setActiveModalListing(null)}>
+        <div className="modal-overlay" onClick={() => { if (!isProcessingPayment) setActiveModalListing(null); }}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <div className="modal-header">
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
@@ -530,13 +531,21 @@ export const Marketplace = ({
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                       <input 
-                        type="number"
-                        min="0"
-                        max={activeModalListing.availableStockKg}
-                        step={10}
+                        type="text"
+                        inputMode="numeric"
+                        pattern="[0-9]*"
                         className="input-search"
                         value={orderQuantity}
-                        onChange={(e) => setOrderQuantity(e.target.value === '' ? '' : Number(e.target.value))}
+                        onKeyDown={(e) => {
+                          e.stopPropagation();
+                          if (e.key === 'Enter') {
+                            e.preventDefault();
+                          }
+                        }}
+                        onChange={(e) => {
+                          const val = e.target.value.replace(/\D/g, '');
+                          setOrderQuantity(val);
+                        }}
                         style={{ 
                           flex: 1, 
                           fontSize: '16px', 
@@ -569,22 +578,31 @@ export const Marketplace = ({
                     )}
                   </div>
 
-                  {/* Estimasi Pengiriman & Alamat Antar Dummy */}
+                  {/* Estimasi Pengiriman Tetap & Alamat Antar Dummy */}
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '12px' }}>
                     <div>
                       <label style={{ fontSize: '12px', fontWeight: 700, display: 'block', marginBottom: '6px', color: 'var(--text-main)', fontFamily: 'var(--font-subtext)' }}>
-                        Pemberitahuan Estimasi Tiba:
+                        Pemberitahuan Estimasi Tiba (Tetap):
                       </label>
-                      <input 
-                        type="date"
-                        className="input-search"
-                        value={deliveryDate}
-                        onChange={(e) => setDeliveryDate(e.target.value)}
-                        style={{ width: '100%' }}
-                        id="input-delivery-date"
-                      />
+                      <div 
+                        style={{ 
+                          padding: '10px 14px', 
+                          background: 'var(--bg-section)', 
+                          border: '1px solid var(--border-subtle)', 
+                          borderRadius: 'var(--radius-sm)',
+                          fontSize: '13px',
+                          fontWeight: 700,
+                          color: 'var(--forest)',
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '8px'
+                        }}
+                      >
+                        <Calendar size={15} style={{ color: 'var(--forest)' }} />
+                        <span>Besok Pagi (12 Okt 2026) · Pukul 07:00 – 09:30 WIB</span>
+                      </div>
                       <span style={{ fontSize: '10.5px', color: 'var(--text-secondary)', marginTop: '4px', display: 'block' }}>
-                        Estimasi tiba di lokasi: Pukul 07:00 – 09:30 WIB
+                        Jadwal keberangkatan cold-chain tetap dari sentra panen Jawa Timur.
                       </span>
                     </div>
 
@@ -597,6 +615,7 @@ export const Marketplace = ({
                         className="input-search"
                         placeholder="Contoh: Jl. Mayjen Sungkono No. 88, Surabaya"
                         value={deliveryAddress}
+                        onKeyDown={(e) => e.stopPropagation()}
                         onChange={(e) => setDeliveryAddress(e.target.value)}
                         style={{ width: '100%' }}
                         id="input-delivery-address"

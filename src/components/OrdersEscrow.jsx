@@ -96,7 +96,7 @@ export const OrdersEscrow = ({ orders, onReleaseFunds, onFileDispute, currentRol
                   </div>
                 </div>
 
-                {/* Escrow 3-Step Visual Timeline: Dikemas -> Dikirim -> Selesai */}
+                {/* Escrow 4-Step Visual Timeline: Dikemas -> Inspeksi Mutu -> Dikirim -> Selesai */}
                 <div className="order-timeline-clean">
                   {/* Step 1: Dikemas */}
                   <div className={`order-timeline-item ${order.orderStatus ? 'completed' : 'active'}`}>
@@ -107,14 +107,45 @@ export const OrdersEscrow = ({ orders, onReleaseFunds, onFileDispute, currentRol
                     <div className="order-timeline-content">
                       <div className="order-timeline-title">Dikemas</div>
                       <div className="order-timeline-time">Hari ini, 06:15 WIB</div>
-                      <div className="order-timeline-desc">Koperasi sortir, grading & pengemasan higienis</div>
+                      <div className="order-timeline-desc">Koperasi sortir & penimbangan awal</div>
                     </div>
                   </div>
 
-                  {/* Step 2: Dikirim */}
-                  <div className={`order-timeline-item ${order.orderStatus === 'in_transit' || order.orderStatus === 'in_inspection' || isReleased ? 'completed' : order.orderStatus === 'preparing' ? 'active' : ''}`}>
+                  {/* Step 2: Inspeksi Mutu (Hanya Melihat Keputusan QC) */}
+                  <div className={`order-timeline-item ${order.qcResult?.inspected || order.orderStatus === 'in_transit' || order.orderStatus === 'in_inspection' || isReleased ? 'completed' : 'active'}`}>
                     <div className="order-timeline-node">
                       <div className="order-timeline-circle">2</div>
+                      <div className="order-timeline-line" />
+                    </div>
+                    <div className="order-timeline-content">
+                      <div className="order-timeline-title">Inspeksi Mutu</div>
+                      <div className="order-timeline-time">Hari ini, 06:45 WIB</div>
+                      <div className="order-timeline-desc">Sampling mutu fisik SNI oleh auditor lapangan</div>
+
+                      {/* Kotak Keputusan QC Read-Only */}
+                      <div style={{ marginTop: '8px', padding: '8px 10px', background: order.qcResult?.inspected ? 'var(--forest-dim)' : 'var(--bg-surface)', border: `1px solid ${order.qcResult?.inspected ? 'var(--sage-border)' : 'var(--border-strong)'}`, borderRadius: '6px', fontSize: '11px' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontWeight: 700, color: order.qcResult?.inspected ? 'var(--forest)' : 'var(--text-secondary)' }}>
+                          <CheckCircle2 size={13} style={{ color: order.qcResult?.inspected ? 'var(--forest)' : 'var(--text-muted)' }} />
+                          <span>Keputusan QC: {order.qcResult?.inspected ? "Lolos Standar Mutu SNI" : "Menunggu Pemeriksaan Lapangan"}</span>
+                        </div>
+                        {order.qcResult?.inspector && (
+                          <div style={{ color: 'var(--text-secondary)', marginTop: '3px', fontSize: '10.5px' }}>
+                            Auditor: {order.qcResult.inspector} {order.qcResult.passRate ? `· Kesesuaian: ${order.qcResult.passRate}` : ''}
+                          </div>
+                        )}
+                        {order.qcResult?.notes && (
+                          <div style={{ color: 'var(--text-main)', marginTop: '2px', fontStyle: 'italic', fontSize: '10.5px' }}>
+                            "{order.qcResult.notes}"
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Step 3: Dikirim */}
+                  <div className={`order-timeline-item ${order.orderStatus === 'in_transit' || isReleased ? 'completed' : order.orderStatus === 'preparing' ? '' : 'active'}`}>
+                    <div className="order-timeline-node">
+                      <div className="order-timeline-circle">3</div>
                       <div className="order-timeline-line" />
                     </div>
                     <div className="order-timeline-content">
@@ -124,10 +155,10 @@ export const OrdersEscrow = ({ orders, onReleaseFunds, onFileDispute, currentRol
                     </div>
                   </div>
 
-                  {/* Step 3: Selesai (dengan Jendela Waktu Inspeksi) */}
+                  {/* Step 4: Selesai (dengan Jendela Waktu Inspeksi) */}
                   <div className={`order-timeline-item ${isReleased ? 'completed' : (order.orderStatus === 'in_inspection' || order.orderStatus === 'in_transit') ? 'active' : ''}`}>
                     <div className="order-timeline-node">
-                      <div className="order-timeline-circle">3</div>
+                      <div className="order-timeline-circle">4</div>
                     </div>
                     <div className="order-timeline-content">
                       <div className="order-timeline-title">Selesai</div>
