@@ -48,6 +48,7 @@ export const Marketplace = ({
   const [activeModalListing, setActiveModalListing] = useState(null);
   const [orderQuantity, setOrderQuantity] = useState(100);
   const [deliveryDate, setDeliveryDate] = useState('2026-10-12');
+  const [deliveryAddress, setDeliveryAddress] = useState('Jl. Mayjen Sungkono No. 88, Dukuh Pakis, Surabaya');
   const [deliveryNotes, setDeliveryNotes] = useState('Pengiriman jam 07.00 - 09.00 pagi sebelum operasional restoran.');
   const [selectedPaymentProvider, setSelectedPaymentProvider] = useState('bca_va');
   const [isProcessingPayment, setIsProcessingPayment] = useState(false);
@@ -84,19 +85,25 @@ export const Marketplace = ({
   // Open Checkout Modal
   const handleOpenCheckout = (listing) => {
     setActiveModalListing(listing);
-    setOrderQuantity(listing.minOrderKg);
+    // Inisialisasi kuantitas dengan batas minimum tapi tidak melebihi stok yang ada
+    const initialQty = Math.min(listing.minOrderKg, listing.availableStockKg || listing.minOrderKg);
+    setOrderQuantity(initialQty);
     setPaymentSuccessData(null);
   };
 
   // Process Escrow Payment
   const handleConfirmEscrowPayment = () => {
     if (!activeModalListing) return;
+    const qty = Number(orderQuantity);
+    if (qty <= 0 || qty < activeModalListing.minOrderKg || qty > activeModalListing.availableStockKg) {
+      return;
+    }
     setIsProcessingPayment(true);
 
     setTimeout(() => {
       const partner = partners.find(p => p.id === activeModalListing.partnerId);
-      const subtotal = orderQuantity * activeModalListing.pricePerKg;
-      const shippingFee = Math.round(orderQuantity * 1800); // Rp 1.800 per kg 3PL cold-chain
+      const subtotal = qty * activeModalListing.pricePerKg;
+      const shippingFee = Math.round(qty * 1800); // Rp 1.800 per kg 3PL cold-chain
       const platformFee = Math.round(subtotal * 0.025); // 2.5% komisi platform
       const totalAmount = subtotal + shippingFee + platformFee;
 
@@ -105,7 +112,7 @@ export const Marketplace = ({
         buyer: {
           name: currentRole === 'buyer' ? "Resto & Bistro Surabaya" : "Mitra Pembeli Horeka",
           contact: "Purchasing Manager (0812-9988-7766)",
-          deliveryAddress: "Jl. Mayjen Sungkono No. 88, Dukuh Pakis, Surabaya"
+          deliveryAddress: deliveryAddress || "Jl. Mayjen Sungkono No. 88, Dukuh Pakis, Surabaya"
         },
         seller: {
           partnerId: activeModalListing.partnerId,
@@ -113,7 +120,7 @@ export const Marketplace = ({
         },
         listingId: activeModalListing.id,
         commodityName: activeModalListing.title,
-        quantityKg: Number(orderQuantity),
+        quantityKg: qty,
         pricePerKg: activeModalListing.pricePerKg,
         subtotal,
         shippingFee,
@@ -511,37 +518,93 @@ export const Marketplace = ({
               ) : (
                 <>
                   {/* Form Quantity & Schedule */}
+                  {/* Form Quantity & Stock Sync */}
                   <div>
-                    <label style={{ fontSize: '12px', fontWeight: 700, display: 'block', marginBottom: '6px', color: 'var(--text-main)', fontFamily: 'var(--font-subtext)' }}>
-                      Jumlah Kuantitas Pesanan (Min: {activeModalListing.minOrderKg} kg):
-                    </label>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+                      <label style={{ fontSize: '12px', fontWeight: 700, color: 'var(--text-main)', fontFamily: 'var(--font-subtext)' }}>
+                        Jumlah Kuantitas Pesanan:
+                      </label>
+                      <span style={{ fontSize: '11px', color: 'var(--text-secondary)' }}>
+                        Stok Tersedia: <strong style={{ color: 'var(--forest)' }}>{(activeModalListing.availableStockKg || 0).toLocaleString('id-ID')} kg</strong> (Min: {activeModalListing.minOrderKg} kg)
+                      </span>
+                    </div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                       <input 
                         type="number"
-                        min={activeModalListing.minOrderKg}
+                        min="0"
+                        max={activeModalListing.availableStockKg}
                         step={10}
                         className="input-search"
                         value={orderQuantity}
-                        onChange={(e) => setOrderQuantity(Math.max(activeModalListing.minOrderKg, Number(e.target.value)))}
-                        style={{ flex: 1, fontSize: '16px', fontWeight: 700 }}
+                        onChange={(e) => setOrderQuantity(e.target.value === '' ? '' : Number(e.target.value))}
+                        style={{ 
+                          flex: 1, 
+                          fontSize: '16px', 
+                          fontWeight: 700,
+                          borderColor: (Number(orderQuantity) > activeModalListing.availableStockKg || Number(orderQuantity) < activeModalListing.minOrderKg) ? '#e74c3c' : undefined
+                        }}
                         id="input-order-quantity"
                       />
                       <span className="badge badge-flat" style={{ fontSize: '13px', padding: '9px 14px' }}>Kilogram (kg)</span>
                     </div>
+
+                    {/* Peringatan Batas Minimum / Stok */}
+                    {Number(orderQuantity) > activeModalListing.availableStockKg && (
+                      <div style={{ color: '#c0392b', fontSize: '11.5px', marginTop: '6px', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '5px' }}>
+                        <AlertTriangle size={13} />
+                        <span>Kuantitas melebihi stok yang tersedia (Maks: {activeModalListing.availableStockKg} kg).</span>
+                      </div>
+                    )}
+                    {Number(orderQuantity) > 0 && Number(orderQuantity) < activeModalListing.minOrderKg && (
+                      <div style={{ color: '#d35400', fontSize: '11.5px', marginTop: '6px', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '5px' }}>
+                        <AlertTriangle size={13} />
+                        <span>Kuantitas di bawah batas minimum pemesanan ({activeModalListing.minOrderKg} kg).</span>
+                      </div>
+                    )}
+                    {Number(orderQuantity) === 0 && (
+                      <div style={{ color: '#d35400', fontSize: '11.5px', marginTop: '6px', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '5px' }}>
+                        <AlertTriangle size={13} />
+                        <span>Kuantitas harus lebih dari 0 kg (Batas min: {activeModalListing.minOrderKg} kg).</span>
+                      </div>
+                    )}
                   </div>
 
-                  <div>
-                    <label style={{ fontSize: '12px', fontWeight: 700, display: 'block', marginBottom: '6px', color: 'var(--text-main)', fontFamily: 'var(--font-subtext)' }}>
-                      Jadwal Pengiriman Terjadwal ke Surabaya:
-                    </label>
-                    <input 
-                      type="date"
-                      className="input-search"
-                      value={deliveryDate}
-                      onChange={(e) => setDeliveryDate(e.target.value)}
-                      style={{ width: '100%' }}
-                      id="input-delivery-date"
-                    />
+                  {/* Estimasi Pengiriman & Alamat Antar Dummy */}
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '12px' }}>
+                    <div>
+                      <label style={{ fontSize: '12px', fontWeight: 700, display: 'block', marginBottom: '6px', color: 'var(--text-main)', fontFamily: 'var(--font-subtext)' }}>
+                        Pemberitahuan Estimasi Tiba:
+                      </label>
+                      <input 
+                        type="date"
+                        className="input-search"
+                        value={deliveryDate}
+                        onChange={(e) => setDeliveryDate(e.target.value)}
+                        style={{ width: '100%' }}
+                        id="input-delivery-date"
+                      />
+                      <span style={{ fontSize: '10.5px', color: 'var(--text-secondary)', marginTop: '4px', display: 'block' }}>
+                        Estimasi tiba di lokasi: Pukul 07:00 – 09:30 WIB
+                      </span>
+                    </div>
+
+                    <div>
+                      <label style={{ fontSize: '12px', fontWeight: 700, display: 'block', marginBottom: '6px', color: 'var(--text-main)', fontFamily: 'var(--font-subtext)' }}>
+                        Alamat Pengiriman (Tujuan):
+                      </label>
+                      <input 
+                        type="text"
+                        className="input-search"
+                        placeholder="Contoh: Jl. Mayjen Sungkono No. 88, Surabaya"
+                        value={deliveryAddress}
+                        onChange={(e) => setDeliveryAddress(e.target.value)}
+                        style={{ width: '100%' }}
+                        id="input-delivery-address"
+                      />
+                      <span style={{ fontSize: '10.5px', color: 'var(--text-secondary)', marginTop: '4px', display: 'block' }}>
+                        Alamat penerima untuk kurir logistik 3PL
+                      </span>
+                    </div>
                   </div>
 
                   {/* Payment Gateway Provider Selector (PJP Escrow) */}
@@ -588,22 +651,22 @@ export const Marketplace = ({
                   {/* Cost Summary Breakdown */}
                   <div style={{ background: 'var(--bg-section)', padding: '16px', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-subtle)', fontSize: '12px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                      <span style={{ color: 'var(--text-secondary)' }}>Subtotal ({orderQuantity} kg @ Rp {activeModalListing.pricePerKg.toLocaleString('id-ID')}):</span>
-                      <span className="num-mono" style={{ fontWeight: 700 }}>Rp {(orderQuantity * activeModalListing.pricePerKg).toLocaleString('id-ID')}</span>
+                      <span style={{ color: 'var(--text-secondary)' }}>Subtotal ({Number(orderQuantity) || 0} kg @ Rp {activeModalListing.pricePerKg.toLocaleString('id-ID')}):</span>
+                      <span className="num-mono" style={{ fontWeight: 700 }}>Rp {((Number(orderQuantity) || 0) * activeModalListing.pricePerKg).toLocaleString('id-ID')}</span>
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                       <span style={{ color: 'var(--text-secondary)' }}>Ongkir 3PL Cold-Chain ({activeModalListing.originCity} ke Surabaya):</span>
-                      <span className="num-mono" style={{ fontWeight: 700 }}>Rp {(orderQuantity * 1800).toLocaleString('id-ID')}</span>
+                      <span className="num-mono" style={{ fontWeight: 700 }}>Rp {((Number(orderQuantity) || 0) * 1800).toLocaleString('id-ID')}</span>
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                       <span style={{ color: 'var(--text-secondary)' }}>Biaya Jaminan Escrow Platform (2.5%):</span>
-                      <span className="num-mono" style={{ fontWeight: 700 }}>Rp {Math.round(orderQuantity * activeModalListing.pricePerKg * 0.025).toLocaleString('id-ID')}</span>
+                      <span className="num-mono" style={{ fontWeight: 700 }}>Rp {Math.round((Number(orderQuantity) || 0) * activeModalListing.pricePerKg * 0.025).toLocaleString('id-ID')}</span>
                     </div>
                     <div style={{ height: '1.5px', background: 'var(--border-subtle)', margin: '4px 0' }} />
                     <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '15px', fontWeight: 800 }}>
                       <span style={{ color: 'var(--forest)' }}>Total Pembayaran Escrow:</span>
                       <span className="num-mono" style={{ color: 'var(--forest)' }}>
-                        Rp {(orderQuantity * activeModalListing.pricePerKg + orderQuantity * 1800 + Math.round(orderQuantity * activeModalListing.pricePerKg * 0.025)).toLocaleString('id-ID')}
+                        Rp {((Number(orderQuantity) || 0) * activeModalListing.pricePerKg + (Number(orderQuantity) || 0) * 1800 + Math.round((Number(orderQuantity) || 0) * activeModalListing.pricePerKg * 0.025)).toLocaleString('id-ID')}
                       </span>
                     </div>
                   </div>
@@ -631,7 +694,13 @@ export const Marketplace = ({
                 <button 
                   className="btn btn-primary"
                   onClick={handleConfirmEscrowPayment}
-                  disabled={isProcessingPayment}
+                  disabled={
+                    isProcessingPayment || 
+                    !orderQuantity || 
+                    Number(orderQuantity) <= 0 || 
+                    Number(orderQuantity) < activeModalListing.minOrderKg || 
+                    Number(orderQuantity) > activeModalListing.availableStockKg
+                  }
                   id="btn-confirm-escrow-payment"
                 >
                   {isProcessingPayment ? "Memproses Kunci Escrow..." : "Konfirmasi & Kunci Dana Escrow"}

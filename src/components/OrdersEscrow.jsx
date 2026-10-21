@@ -96,31 +96,55 @@ export const OrdersEscrow = ({ orders, onReleaseFunds, onFileDispute, currentRol
                   </div>
                 </div>
 
-                {/* Escrow 6-Step Visual Timeline Sesuai Alur Spesifikasi */}
-                <div className="timeline">
-                  <div className={`timeline-step ${order.orderStatus ? 'completed' : ''}`}>
-                    <div className="timeline-icon">1</div>
-                    <div className="timeline-label">Order Dibuat</div>
+                {/* Escrow 3-Step Visual Timeline: Dikemas -> Dikirim -> Selesai */}
+                <div className="order-timeline-clean">
+                  {/* Step 1: Dikemas */}
+                  <div className={`order-timeline-item ${order.orderStatus ? 'completed' : 'active'}`}>
+                    <div className="order-timeline-node">
+                      <div className="order-timeline-circle">1</div>
+                      <div className="order-timeline-line" />
+                    </div>
+                    <div className="order-timeline-content">
+                      <div className="order-timeline-title">Dikemas</div>
+                      <div className="order-timeline-time">Hari ini, 06:15 WIB</div>
+                      <div className="order-timeline-desc">Koperasi sortir, grading & pengemasan higienis</div>
+                    </div>
                   </div>
-                  <div className={`timeline-step ${order.escrowStatus ? 'completed' : ''}`}>
-                    <div className="timeline-icon">2</div>
-                    <div className="timeline-label">Escrow Terkunci</div>
+
+                  {/* Step 2: Dikirim */}
+                  <div className={`order-timeline-item ${order.orderStatus === 'in_transit' || order.orderStatus === 'in_inspection' || isReleased ? 'completed' : order.orderStatus === 'preparing' ? 'active' : ''}`}>
+                    <div className="order-timeline-node">
+                      <div className="order-timeline-circle">2</div>
+                      <div className="order-timeline-line" />
+                    </div>
+                    <div className="order-timeline-content">
+                      <div className="order-timeline-title">Dikirim</div>
+                      <div className="order-timeline-time">Hari ini, 07:30 WIB</div>
+                      <div className="order-timeline-desc">Armada cold-chain 3PL dalam perjalanan ke lokasi</div>
+                    </div>
                   </div>
-                  <div className={`timeline-step ${order.orderStatus !== 'pending_payment' ? 'completed' : 'active'}`}>
-                    <div className="timeline-icon">3</div>
-                    <div className="timeline-label">Koperasi Sortir</div>
-                  </div>
-                  <div className={`timeline-step ${order.orderStatus === 'in_transit' || order.orderStatus === 'in_inspection' || isReleased ? 'completed' : ''}`}>
-                    <div className="timeline-icon">4</div>
-                    <div className="timeline-label">Pengiriman 3PL</div>
-                  </div>
-                  <div className={`timeline-step ${order.orderStatus === 'in_inspection' ? 'active' : isReleased ? 'completed' : ''}`}>
-                    <div className="timeline-icon">5</div>
-                    <div className="timeline-label">Inspeksi Mutu</div>
-                  </div>
-                  <div className={`timeline-step ${isReleased ? 'completed' : ''}`}>
-                    <div className="timeline-icon">6</div>
-                    <div className="timeline-label">Dana Dicairkan</div>
+
+                  {/* Step 3: Selesai (dengan Jendela Waktu Inspeksi) */}
+                  <div className={`order-timeline-item ${isReleased ? 'completed' : (order.orderStatus === 'in_inspection' || order.orderStatus === 'in_transit') ? 'active' : ''}`}>
+                    <div className="order-timeline-node">
+                      <div className="order-timeline-circle">3</div>
+                    </div>
+                    <div className="order-timeline-content">
+                      <div className="order-timeline-title">Selesai</div>
+                      <div className="order-timeline-time">Estimasi tiba: 09:15 WIB</div>
+                      <div className="order-timeline-desc">Pesanan sampai & serah terima fisik</div>
+                      
+                      {/* Jendela Waktu Inspeksi (Claim Window) */}
+                      <div className="claim-window-pill">
+                        <Clock size={13} style={{ color: 'var(--forest)', flexShrink: 0 }} />
+                        <div>
+                          <strong>Jendela Waktu Inspeksi:</strong> {isReleased ? "Pemeriksaan Selesai (Diterima)" : "Aktif hingga jam pengiriman + batas klaim"}
+                          <div style={{ fontSize: '10.5px', color: 'var(--text-secondary)', marginTop: '2px' }}>
+                            Dana escrow otomatis cair jika tidak ada klaim dalam periode ini.
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
@@ -129,8 +153,8 @@ export const OrdersEscrow = ({ orders, onReleaseFunds, onFileDispute, currentRol
                   <div>
                     <div style={{ color: 'var(--text-secondary)', marginBottom: '2px' }}>Rincian Komoditas:</div>
                     <div style={{ fontWeight: 700, fontSize: '14px', marginBottom: '2px' }}>{order.commodityName}</div>
-                    <div>Volume: <strong>{order.quantityKg} kg</strong> @ Rp {order.pricePerKg.toLocaleString('id-ID')}/kg</div>
-                    <div>Lokasi Antar: {order.buyer.deliveryAddress}</div>
+                    <div>Volume: <strong>{order.quantityKg} kg</strong></div>
+                    <div style={{ marginTop: '4px' }}>Lokasi Antar: <strong>{order.buyer.deliveryAddress}</strong></div>
                   </div>
 
                   <div>
@@ -144,13 +168,11 @@ export const OrdersEscrow = ({ orders, onReleaseFunds, onFileDispute, currentRol
                   </div>
 
                   <div>
-                    <div style={{ color: 'var(--text-secondary)', marginBottom: '2px' }}>Jendela Waktu Inspeksi (Claim Window):</div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: 'var(--earth)', fontWeight: 700 }}>
-                      <Clock size={14} />
-                      <span>{isReleased ? "Pemeriksaan Selesai (Diterima)" : "Aktif hingga jam pengiriman + batas klaim"}</span>
-                    </div>
-                    <div style={{ fontSize: '11px', color: 'var(--text-muted)', marginTop: '4px' }}>
-                      Jika tidak ada klaim dalam periode ini, dana otomatis diteruskan ke penjual.
+                    <div style={{ color: 'var(--text-secondary)', marginBottom: '2px' }}>Pembayaran Escrow:</div>
+                    <div style={{ fontWeight: 700, color: 'var(--forest)' }}>{order.paymentMethod}</div>
+                    <div style={{ marginTop: '2px' }}>ID Transaksi: <span className="num-mono">{order.paymentRef}</span></div>
+                    <div style={{ color: 'var(--text-secondary)', marginTop: '2px' }}>
+                      Status Escrow: <strong>{isReleased ? "Cair ke Petani" : isDisputed ? "Ditangguhkan (Dispute)" : "Terkunci Aman"}</strong>
                     </div>
                   </div>
                 </div>

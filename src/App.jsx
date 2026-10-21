@@ -80,9 +80,22 @@ export function App() {
     );
   };
 
-  // Create Order from Marketplace
+  // Create Order from Marketplace & Sync Stock
   const handleCreateOrder = (newOrder) => {
     setOrders(prev => [newOrder, ...prev]);
+    // Potong stok listing sesuai kuantitas yang dipesan
+    if (newOrder.listingId && newOrder.quantityKg) {
+      setListings(prevListings => prevListings.map(l => {
+        if (l.id === newOrder.listingId) {
+          const updatedStock = Math.max(0, (l.availableStockKg || 0) - Number(newOrder.quantityKg));
+          return {
+            ...l,
+            availableStockKg: updatedStock
+          };
+        }
+        return l;
+      }));
+    }
   };
 
   // Release Escrow Funds to Seller (minus 2.5% platform commission)
