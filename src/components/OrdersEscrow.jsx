@@ -208,8 +208,8 @@ export const OrdersEscrow = ({ orders, onReleaseFunds, onFileDispute, currentRol
                   </div>
                 </div>
 
-                {/* QC Inspection Summary if Available */}
-                {order.qcResult && (
+                {/* QC Inspection Summary if Approved */}
+                {order.qcResult && order.qcResult.inspected && (
                   <div style={{ background: 'var(--forest-dim)', border: '1px solid var(--sage-border)', padding: '10px 14px', borderRadius: '8px', marginBottom: '16px', fontSize: '12px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                       <CheckCircle2 size={16} style={{ color: 'var(--forest)' }} />
@@ -236,8 +236,8 @@ export const OrdersEscrow = ({ orders, onReleaseFunds, onFileDispute, currentRol
                   </div>
                 )}
 
-                {/* Action Buttons */}
-                {isFundsLocked && (
+                {/* Action Buttons - Hanya muncul jika inspeksi mutu telah disetujui (QC inspected = true) */}
+                {isFundsLocked && Boolean(order.qcResult?.inspected) && (
                   <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '10px', flexWrap: 'wrap' }}>
                     <button 
                       className="btn btn-outline btn-sm"
