@@ -8,7 +8,7 @@ export default defineConfig({
     proxy: {
       // Proxy API calls to FastAPI backend (avoids CORS in dev)
       '/api': {
-        target: 'http://localhost:8000',
+        target: 'http://127.0.0.1:8000',
         changeOrigin: true,
         configure: (proxy) => {
           proxy.on('error', (err, req, res) => {
@@ -21,7 +21,7 @@ export default defineConfig({
         }
       },
       '/health': {
-        target: 'http://localhost:8000',
+        target: 'http://127.0.0.1:8000',
         changeOrigin: true,
         configure: (proxy) => {
           proxy.on('error', (err, req, res) => {

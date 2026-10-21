@@ -62,6 +62,7 @@ export function App() {
         setLastSyncTime(new Date().toLocaleTimeString('id-ID'));
       }
     } catch (err) {
+      console.warn('[AgriX API] Sinkronisasi data gagal, menggunakan mock fallback:', err);
       setApiStatus('offline');
       // Keep using mock data - no action needed
     }
