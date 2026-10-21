@@ -234,50 +234,7 @@ export const Marketplace = ({
         </div>
       </div>
 
-      {/* ── 3-COLUMN PROMO SPOTLIGHT BANNERS (preview.jpg style) ── */}
-      <div className="promo-spotlight-grid">
-        <div className="promo-card" onClick={() => setSelectedCity('Malang')} style={{ cursor: 'pointer' }}>
-          <div>
-            <div className="promo-card-tag">Sentra Malang</div>
-            <div className="promo-card-title">Sayur & Hortikultura</div>
-            <div className="promo-card-link">
-              <span>Lihat Petik Pagi</span>
-              <ArrowRight size={13} />
-            </div>
-          </div>
-          <div style={{ width: '48px', height: '48px', borderRadius: '50%', background: 'var(--forest-dim)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--forest)', border: '1px solid var(--sage-border)' }}>
-            <Truck size={24} />
-          </div>
-        </div>
 
-        <div className="promo-card" onClick={() => setSelectedCity('Kediri')} style={{ cursor: 'pointer' }}>
-          <div>
-            <div className="promo-card-tag">Sentra Kediri</div>
-            <div className="promo-card-title">Cabai Merah & Rawit</div>
-            <div className="promo-card-link">
-              <span>Pasokan Industri & Resto</span>
-              <ArrowRight size={13} />
-            </div>
-          </div>
-          <div style={{ width: '48px', height: '48px', borderRadius: '50%', background: 'rgba(192, 57, 43, 0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#c0392b', border: '1px solid rgba(192, 57, 43, 0.2)' }}>
-            <Flame size={24} />
-          </div>
-        </div>
-
-        <div className="promo-card" onClick={() => setSelectedCity('Banyuwangi')} style={{ cursor: 'pointer' }}>
-          <div>
-            <div className="promo-card-tag">Lumbung Banyuwangi</div>
-            <div className="promo-card-title">Beras Premium SNI</div>
-            <div className="promo-card-link">
-              <span>Sosoh 95% Wangi</span>
-              <ArrowRight size={13} />
-            </div>
-          </div>
-          <div style={{ width: '48px', height: '48px', borderRadius: '50%', background: 'var(--earth-dim)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--earth)', border: '1px solid var(--earth-border)' }}>
-            <Wheat size={24} />
-          </div>
-        </div>
-      </div>
 
       {/* ── STANDAR MUTU PANGAN SNI (Clean Light Card) ── */}
       <div className="card" style={{ marginBottom: '22px', padding: '18px 22px', background: '#ffffff' }}>
@@ -487,56 +444,13 @@ export const Marketplace = ({
                     id={`btn-order-${item.id}`}
                   >
                     <CreditCard size={15} />
-                    <span>Pesan B2B (Escrow Aman)</span>
+                    <span>Pesan</span>
                   </button>
                 </div>
               </div>
             </div>
           );
         })}
-      </div>
-
-      {/* ── BOTTOM TRUST STRIP (preview.jpg style) ── */}
-      <div className="bottom-trust-strip">
-        <div className="trust-feature-item">
-          <div className="trust-feature-icon">
-            <Truck size={20} />
-          </div>
-          <div>
-            <div className="trust-feature-title">Armada Dingin 3PL</div>
-            <div className="trust-feature-desc">Pengiriman terjadwal armada cold-chain se-Jatim</div>
-          </div>
-        </div>
-
-        <div className="trust-feature-item">
-          <div className="trust-feature-icon">
-            <ShieldCheck size={20} />
-          </div>
-          <div>
-            <div className="trust-feature-title">Rekening Escrow BI</div>
-            <div className="trust-feature-desc">Dana tertahan aman hingga pesanan lolos inspeksi</div>
-          </div>
-        </div>
-
-        <div className="trust-feature-item">
-          <div className="trust-feature-icon">
-            <RefreshCw size={20} />
-          </div>
-          <div>
-            <div className="trust-feature-title">Jendela Klaim 6–48 Jam</div>
-            <div className="trust-feature-desc">Garansi retur dan resolusi sengketa objektif</div>
-          </div>
-        </div>
-
-        <div className="trust-feature-item">
-          <div className="trust-feature-icon">
-            <PackageCheck size={20} />
-          </div>
-          <div>
-            <div className="trust-feature-title">Standar Mutu SNI</div>
-            <div className="trust-feature-desc">Pemeriksaan sampling QC lapangan terakreditasi</div>
-          </div>
-        </div>
       </div>
 
       {/* ── CHECKOUT / ESCROW PAYMENT MODAL (Clean Light Theme) ── */}

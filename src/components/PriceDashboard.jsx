@@ -324,14 +324,6 @@ export const PriceDashboard = ({
               <Info size={13} />
               <span>Sumber Data</span>
             </button>
-            <button 
-              className="btn btn-outline btn-sm" 
-              onClick={onOpenAlertModal}
-              style={{ fontSize: '12px', padding: '6px 14px' }}
-            >
-              <Activity size={13} />
-              <span>Notifikasi</span>
-            </button>
           </div>
         </div>
 
@@ -485,7 +477,7 @@ export const PriceDashboard = ({
                 {chartType === 'candlestick' ? renderCandlestick() : renderLineChart()}
               </div>
 
-              {/* 3 Friendly Big Metric Boxes (like 10% Water, 78% Light in utama.jpg) */}
+              {/* 2 Friendly Big Metric Boxes */}
               <div className="friendly-metrics-row">
                 <div className="friendly-metric-box">
                   <div className="friendly-metric-val">Rp {dynamicStats.high.toLocaleString('id-ID')}</div>
@@ -495,65 +487,6 @@ export const PriceDashboard = ({
                   <div className="friendly-metric-val">Rp {dynamicStats.low.toLocaleString('id-ID')}</div>
                   <div className="friendly-metric-lbl">TERENDAH ({daysCount} HARI)</div>
                 </div>
-                <div className="friendly-metric-box">
-                  <div className="friendly-metric-val" style={{ color: 'var(--up-color)' }}>100% Valid</div>
-                  <div className="friendly-metric-lbl">DATA PIHPS TERKINI</div>
-                </div>
-              </div>
-
-              {/* Clean Accordion for Advanced Features (Compare & Data Quality) */}
-              <div style={{ marginTop: '20px' }}>
-                <button 
-                  onClick={() => setShowAdvancedTools(!showAdvancedTools)}
-                  className="btn btn-outline btn-sm"
-                  style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '12px' }}
-                >
-                  <SlidersHorizontal size={13} />
-                  <span>{showAdvancedTools ? 'Sembunyikan' : 'Bandingkan Komoditas'}</span>
-                  {showAdvancedTools ? <ChevronUp size={13} /> : <ChevronDown size={13} />}
-                </button>
-
-                {showAdvancedTools && (
-                  <div style={{ marginTop: '14px', padding: '16px', background: 'var(--bg-section)', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-subtle)', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '16px' }}>
-                    <div>
-                      <div style={{ fontSize: '12px', fontWeight: 700, color: 'var(--forest)', marginBottom: '6px' }}>
-                        Bandingkan {selectedCommodity.name} dengan:
-                      </div>
-                      <select 
-                        className="input-search" 
-                        style={{ width: '100%', marginBottom: '8px' }}
-                        value={compareCommodityId}
-                        onChange={(e) => setCompareCommodityId(e.target.value)}
-                      >
-                        <option value="">-- Pilih Komoditas Pembanding --</option>
-                        {commodities.filter(c => c.id !== selectedCommodity.id).map(c => (
-                          <option key={c.id} value={c.id}>
-                            {c.name} (Rp {c.currentPrice.toLocaleString('id-ID')})
-                          </option>
-                        ))}
-                      </select>
-                      {compareCommodity && (
-                        <div style={{ padding: '8px 12px', background: 'var(--earth-dim)', borderRadius: '6px', border: '1px solid var(--earth-border)', fontSize: '12px' }}>
-                          <div>{compareCommodity.name}: <strong>Rp {compareCommodity.currentPrice.toLocaleString('id-ID')}</strong></div>
-                          <div style={{ color: 'var(--text-secondary)', marginTop: '2px' }}>
-                            Selisih: <strong>Rp {Math.abs(selectedCommodity.currentPrice - compareCommodity.currentPrice).toLocaleString('id-ID')}</strong>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-
-                    <div>
-                      <div style={{ fontSize: '12px', fontWeight: 700, color: 'var(--forest)', marginBottom: '6px' }}>
-                        Cakupan Pasar Induk Sinkronisasi:
-                      </div>
-                      <div style={{ fontSize: '12px', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
-                        <div>• Pasar Keputran & Wonokromo (Surabaya)</div>
-                        <div>• Pasar Gadang (Malang) & Pasar Induk Pare (Kediri)</div>
-                        <div>• Cap Waktu Sinkronisasi: Hari ini 07:30 WIB (PJP Feed)</div>
-                      </div>
-                    </div>
-                  </div>
-                )}
               </div>
             </div>
           )}
@@ -724,7 +657,7 @@ export const PriceDashboard = ({
                         onClick={(e) => { e.stopPropagation(); onNavigateToMarketplace(item.id); }}
                         style={{ fontSize: '10px', padding: '3px 8px' }}
                       >
-                        Pasokan B2B →
+                        Pasokan →
                       </button>
                     </div>
                   </div>
@@ -813,7 +746,7 @@ export const PriceDashboard = ({
                             onClick={(e) => { e.stopPropagation(); onNavigateToMarketplace(item.id); }}
                             title="Buka Penawaran Marketplace"
                           >
-                            Pasokan B2B
+                            Pasokan
                           </button>
                         </td>
                       </tr>

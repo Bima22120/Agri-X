@@ -101,15 +101,6 @@ export const Navbar = ({
             </select>
           </div>
 
-          <button
-            className="sidebar-alert-btn"
-            onClick={onOpenAlertModal}
-            id="sidebar-btn-alert"
-          >
-            <Bell size={15} />
-            <span>Notifikasi Ambang Harga</span>
-          </button>
-
           <div className="sidebar-credits">
             PIHPS BI & SISKAPERBAPO Jatim
           </div>
@@ -131,16 +122,6 @@ export const Navbar = ({
         </div>
 
         <div className="navbar-actions">
-          <button 
-            className="btn btn-outline-white btn-sm" 
-            onClick={onOpenAlertModal} 
-            title="Atur Alert Ambang Batas Harga"
-            id="btn-price-alert"
-          >
-            <Bell size={14} />
-            <span>Alert</span>
-          </button>
-
           <div className="role-badge-box">
             <UserCheck size={14} style={{ color: 'var(--emerald-primary)' }} />
             <select 
